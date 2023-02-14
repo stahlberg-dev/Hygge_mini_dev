@@ -1,0 +1,226 @@
+.safety {
+    @include adaptiveValue("padding-top", 20px, 50px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 20px, 50px, $minWidth, $mobile);
+    background: url("../img/safety/background-mobile.webp") center/cover no-repeat;
+
+    @media (min-width: $mobile) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background: url("../img/safety/background.webp") center/cover no-repeat;
+    }
+
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 5px, 20px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 5px, 10px, $mobile, $desktop);
+        }
+    }
+
+    &__title-text {
+        color: $secondaryColor;
+    }
+
+    &__subtitle {
+        @include adaptiveValue("margin-bottom", 10px, 30px, $minWidth, $mobile);
+        line-height: 1;
+        @include adaptiveValue("font-size", 18px, 40px, $minWidth, $mobile);
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 15px, 30px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 18px, 32px, $mobile, $desktop);
+        }
+
+        &_bold {
+            @include adaptiveValue("margin-top", 20px, 40px, $minWidth, $mobile);
+            @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+            font-weight: 700;
+
+            @media (min-width: $mobile) {
+                @include adaptiveValue("margin-top", 20px, 40px, $mobile, $desktop);
+                @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+            }
+        }
+    }
+
+    &__paragraph {
+        @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 13px, 30px, $minWidth, $mobile);
+        font-weight: 300;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__paragraph-link {
+        display: inline;
+        position: relative;
+        border-bottom: 1px solid $primaryColor;
+        color: $primaryColor;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (any-hover: none) {
+            border: none;
+            font-weight: 500;
+        }
+
+        @include mobileClickAnimation();
+    }
+
+    &__paragraph-label {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform-origin: 20% top;
+        transform: scale(0, 0);
+        z-index: 1;
+        width: calc(100vw - 2 * $containerPadding);
+        padding-top: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease,
+                    transform 0.3s ease;
+
+        @media (min-width: $mobile) {
+            left: 28%;
+            @include adaptiveValue("width", 580px, 720px, $mobile, $desktop);
+            transform-origin: center top;
+            transform: translate(-50%, 0) scale(0, 0)
+        }
+
+        @media (any-hover: none) {
+            pointer-events: none;
+        }
+
+        &_active {
+            opacity: 1;
+            transform: scale(1, 1);
+
+            @media (min-width: $mobile) {
+                transform: translate(-50%, 0) scale(1, 1);
+            }
+        }
+    }
+
+    &__paragraph-label-list {
+        display: flex;
+        position: relative;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        @include adaptiveValue("gap", 5px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("padding", 10px, 30px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 15px, 40px, $minWidth, $mobile);
+        background-color: $secondaryColor;
+        font-weight: 400;
+        color: $thirdColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("gap", 5px, 10px, $mobile, $desktop);
+            @include adaptiveValue("padding", 15px, 25px, $mobile, $desktop);
+            @include adaptiveValue("padding-top", 20px, 30px, $mobile, $desktop);
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 20%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            z-index: -1;
+            width: 20px;
+            height: 20px;
+            background-color: $secondaryColor;
+
+            @media (min-width: $mobile) {
+                left: 50%;
+            }
+        }
+    }
+
+    &__paragraph-label-item {
+        position: relative;
+        @include adaptiveValue("padding-left", 15px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            padding-left: 15px;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            @include adaptiveValue("top", 5px, 12px, $minWidth, $mobile);
+            left: 0;
+            @include adaptiveValue("width", 8px, 12px, $minWidth, $mobile);
+            @include adaptiveValue("height", 8px, 12px, $minWidth, $mobile);
+            border-radius: 50%;
+            background-color: $primaryColor;
+
+            @media (min-width: $mobile) {
+                @include adaptiveValue("top", 5px, 8px, $mobile, $desktop);
+                width: 8px;
+                height: 8px;
+            }
+        }
+    }
+
+    &__recommendations {
+        @include adaptiveValue("margin-bottom", 10px, 30px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 13px, 30px, $minWidth, $mobile);
+        font-weight: 300;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 15px, 30px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__recommendations-item {
+        position: relative;
+        @include adaptiveValue("margin-top", 5px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("padding-left", 15px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("max-width", 550px, 680px, $mobile, $desktop);
+            @include adaptiveValue("margin-top", 5px, 10px, $mobile, $desktop);
+            padding-left: 15px;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            @include adaptiveValue("top", 5px, 12px, $minWidth, $mobile);
+            left: 0;
+            @include adaptiveValue("width", 8px, 12px, $minWidth, $mobile);
+            @include adaptiveValue("height", 8px, 12px, $minWidth, $mobile);
+            border-radius: 50%;
+            background-color: $primaryColor;
+
+            @media (min-width: $mobile) {
+                @include adaptiveValue("top", 5px, 8px, $mobile, $desktop);
+                width: 8px;
+                height: 8px;
+            }
+        }
+    }
+
+    &__conclusion {
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 11px, 22px, $minWidth, $mobile);
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 14px, 16px, $mobile, $desktop);
+        }
+    }
+}

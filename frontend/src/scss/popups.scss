@@ -1,0 +1,334 @@
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: none;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 200;
+    will-change: opacity;
+    transition: backdrop-filter 0.3s ease, 
+                opacity  0.3s ease;
+
+    &_opened {
+        opacity: 1;
+        backdrop-filter: blur(10px);
+        pointer-events: auto;
+    }
+
+    &__wrapper {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $containerPadding;
+    }
+ 
+    &__content {
+        position: relative;
+        min-width: calc($minWidth - $containerPadding * 2);
+        @include adaptiveValue("width", 280px, 650px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 25px, 70px, $minWidth, $mobile);
+        @include adaptiveValue("padding-bottom", 20px, 60px, $minWidth, $mobile);
+        @include adaptiveValue("padding-left", 20px, 60px, $minWidth, $mobile);
+        @include adaptiveValue("padding-right", 20px, 60px, $minWidth, $mobile);
+        background-color: $secondaryColor;
+        color: $thirdColor;
+        transform: scale(0.3, 0.3);
+        transition: transform 0.3s ease;
+
+        @media (min-width: $mobile) {
+            width: 470px;
+            padding: 50px 60px;
+        }
+
+        .popup_opened & {
+            transform: none;
+        }
+    }
+    
+    &__close {
+        position: absolute;
+        top: -50px;
+        right: -4px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (min-width: $mobile) {
+            top: -2px;
+            right: -50px;
+        }
+    }
+
+    &__close-stripe {
+        display: block;
+        position: absolute;
+        top: calc(50% - 5.5%);
+        left: 0;
+        width: 100%;
+        height: 11%;
+        background-color: $thirdColor;
+        transform: rotate(45deg);
+        transition: all 0.3s ease;
+
+        &:first-child {
+            transform: rotate(-45deg);
+        }
+
+        @media (any-hover: hover) {
+            
+            .popup__close:hover & {               
+                background-color: rgba(16, 16, 16, 0.6);
+            }
+        }
+    }
+}
+
+.founder-popup {
+
+    &.popup_opened {
+        backdrop-filter: none;
+
+        @media (min-width: $mobile) {
+            backdrop-filter: blur(10px);
+        }
+    }
+
+    &__wrapper {
+        padding: 0;
+
+        @media (min-width: $mobile) {
+            padding: $containerPadding;
+        }
+    }
+
+    &__content.popup__content {
+        display: flex;
+        flex-flow: column nowrap;
+        @include adaptiveValue("gap", 10px, 20px, $minWidth, $mobile);
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+
+        @media (min-width: $mobile) {
+            flex-flow: row nowrap;
+            gap: 0;
+            @include adaptiveValue("width", 600px, 1000px, $mobile, $desktop);
+            min-height: 0px;
+        }
+    }
+
+    &__close {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        width: 32px;
+        height: 32px;
+        z-index: 1;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130%;
+            height: 130%;
+            border-radius: 50%;
+            background-color: #DDD;
+        }
+
+        @media (min-width: $mobile) {
+            position: absolute;
+            top: -3px;
+            right: -50px;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    &__image-wrapper {
+        position: relative;
+        width: 100%;
+        flex: 0 0 auto;
+        padding-bottom: 130%;
+
+        @media (min-width: $mobile) {
+            flex: 0 0 35%;
+            padding-bottom: 47%;
+        }
+    }
+
+    &__image {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__text {
+        padding: $containerPadding;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("padding-top", $containerPadding, 50px, $mobile, $desktop);
+            @include adaptiveValue("padding-bottom", $containerPadding, 30px, $mobile, $desktop);
+            @include adaptiveValue("padding-right", $containerPadding, 30px, $mobile, $desktop);
+            @include adaptiveValue("padding-left", $containerPadding, 60px, $mobile, $desktop);
+        }
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 18px, 40px, $minWidth, $mobile);
+        font-weight: 700;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 22px, 32px, $mobile, $desktop);
+        }
+    }
+
+    &__paragraph {
+        @include adaptiveValue("margin-bottom", 20px, 50px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 14px, 32px, $minWidth, $mobile);
+        font-weight: 400;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 15px, 20px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 14px, 16px, $mobile, $desktop);
+        }
+    }
+
+    &__author {
+        @include adaptiveValue("font-size", 12px, 30px, $minWidth, $mobile);
+        font-weight: 700;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 12px, 14px, $mobile, $desktop);
+        }
+    }
+}
+.consultation-popup {
+
+    &__wrapper {
+    }
+
+    &__content {
+    }
+
+    &__close {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 10px, 40px, $minWidth, $mobile);
+        text-align: center;
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 20px, 36px, $minWidth, $mobile);
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+    }
+
+    &__form {
+    }
+
+    &__input-wrapper {
+    }
+
+    &__input-icon-wrapper {
+    }
+
+    &__input-icon {
+    }
+
+    &__input {
+    }
+
+    &__agreement {
+
+        @media (min-width: $mobile) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__agreement-checkbox {
+    }
+
+    &__agreement-text {
+    }
+
+    &__button {
+    }
+
+    &__button-text {
+    }
+}
+
+.thanks-popup {
+
+    &__wrapper {
+    }
+
+    &__content {
+    }
+
+    &__close {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 10px, 40px, $minWidth, $mobile);
+        text-align: center;
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 20px, 36px, $minWidth, $mobile);
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+    }
+
+    &__text {
+        @include adaptiveValue("margin-bottom", 10px, 30px, $minWidth, $mobile);
+        text-align: center;
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 16px, 30px, $minWidth, $mobile);
+        font-weight: 400;
+
+        @media (min-width: $mobile) {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    }
+
+    &__icon {
+        display: block;
+        @include adaptiveValue("width", 40px, 70px, $minWidth, $mobile);
+        @include adaptiveValue("height", 40px, 70px, $minWidth, $mobile);
+        margin: 0 auto;
+        fill: $primaryColor;
+        
+        @media (min-width: $mobile) {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}

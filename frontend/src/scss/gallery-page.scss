@@ -1,0 +1,156 @@
+.gallery-page {
+
+    &__gallery {
+        
+    }
+}
+
+.gallery {
+    height: 100%;
+    @include adaptiveValue("padding-top", 80px, 130px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 30px, 50px, $minWidth, $mobile);
+    background-color: $backgroundColor;
+    color: $thirdColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 130px, 170px, $mobile, $desktop);
+        @include adaptiveValue("padding-bottom", 50px, 70px, $mobile, $desktop);
+    }
+
+    &__container {
+
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 30px, 50px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 50px, 70px, $mobile, $desktop);
+        }
+    }
+
+    &__images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 1fr;
+        justify-content: stretch;
+        @include adaptiveValue("gap", 10px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            grid-template-columns: repeat(3, 1fr);
+            @include adaptiveValue("gap", 15px, 30px, $mobile, $desktop);
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    &__thumb {
+        position: absolute;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: url("../img/gallery/full-screen.svg") 32 32, zoom-in;
+        transition: filter 0.5s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                filter: brightness(0.5);
+            }
+        }
+    }
+}
+
+.baguetteBox-button {
+    border-radius: 50%;
+    background-color: rgba(210, 67, 24, 0.4);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    @media(any-hover: hover) {
+
+        &:hover {
+            background-color: rgba(210, 67, 24, 0.7);
+        }
+    }
+
+    &#previous-button,
+    &#next-button,
+    &#close-button {
+        @include adaptiveValue("width", 30px, 64px, $minWidth, $mobile);
+        @include adaptiveValue("height", 30px, 64px, $minWidth, $mobile);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+
+        @media (min-width: $mobile) {
+            width: 48px;
+            height: 48px;
+        }
+
+        &:focus {
+            background-color: rgba(210, 67, 24, 0.4);
+
+            @media(any-hover: hover) {
+
+                &:hover {
+                    background-color: rgba(210, 67, 24, 0.7);
+                }
+            }
+        }
+
+        svg {
+            display: none;
+        }
+    }
+
+    &#previous-button {
+        background-image: url("../img/gallery/arrow-prev.svg");
+    }
+
+    &#next-button {
+        background-image: url("../img/gallery/arrow-next.svg");
+    }
+
+    &#close-button {
+
+        @media(any-hover: none) {
+            background-color: rgba(210, 67, 24, 0.7);
+
+            &:focus {
+                background-color: rgba(210, 67, 24, 0.7);
+            }
+        }
+
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 15%;
+            top: 48%;
+            width: 70%;
+            height: 4%;
+            background-color: $secondaryColor;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+
+    }
+}

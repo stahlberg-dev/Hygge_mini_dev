@@ -1,0 +1,34 @@
+@use "sass:math";
+
+$Muller: Muller;
+$TTNorms: TTNorms;
+$primaryColor: #D24318;
+$secondaryColor: #FFF;
+$thirdColor: #101010;
+$backgroundColor: #F6F6F6;
+
+$minWidth: 320px;
+$maxContentWidth: 1170px;
+$containerPadding: 15px;
+
+$maxContainerWidth: $maxContentWidth + $containerPadding * 2; 
+
+$desktop: $maxContainerWidth + 0.02px;
+$tablet: 992.02px;
+$mobile: 768.02px;
+$smallMobile: 480.02px;
+
+@import "basic_components/reset.scss";
+@import "fonts.scss";
+@import "basic_components/mixins.scss";
+@import "../../node_modules/swiper/swiper.scss";
+@import '../../node_modules/swiper/modules/thumbs/thumbs.scss';
+@import '../../node_modules/swiper/modules/effect-fade/effect-fade.scss';
+@import '../../node_modules/baguettebox.js/src/baguetteBox.scss';
+@import "main-page.scss";
+@import "gallery-page.scss";
+@import "order-success-page.scss";
+@import "header.scss";
+@import "footer.scss";
+@import "popups.scss";
+

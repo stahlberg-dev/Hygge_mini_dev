@@ -1,0 +1,348 @@
+.header {
+    width: 100%;
+    height: 0px;
+
+    &__wrapper {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: $primaryColor;
+    }
+
+    &__container {
+    }
+
+    &__body {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 50px;
+        padding: 5px 0;
+        transition: min-height 0.3s ease;
+
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("min-height", 60px, 100px, $smallMobile, $tablet);
+        }
+
+        .header_scroll & {
+
+            @media (min-width: $smallMobile) {
+                @include adaptiveValue("min-height", 50px, 60px, $smallMobile, $tablet);
+            }
+        }
+    }
+
+    &__logo {
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 20px;
+        z-index: 5;
+
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("height", 20px, 30px, $smallMobile, $tablet);
+        }
+
+        @media (min-width: $tablet) {
+            @include adaptiveValue("margin-right", 30px, 60px, $tablet, $desktop);
+        }
+    }
+
+    &__logo-icon {
+        display: block;
+        height: 100%;
+    }
+
+    &__menu {
+        flex: 1 1 auto;
+
+        @media (min-width: $tablet) {
+            @include adaptiveValue("margin-right", 30px, 60px, $tablet, $desktop);
+        }
+    }
+
+    &__phone {
+        display: none;
+
+        @media (min-width: $mobile) {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-end;
+            gap: 10px;
+            flex: 0 0 auto;
+            margin-right: 40px;
+            color: $secondaryColor;
+        }
+
+        @media (min-width: $tablet) {
+            margin-right: 0;
+        }
+    }
+
+    &__phone-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: opacity 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__phone-icon {
+        width: 16px;
+        height: 16px;
+        fill: $secondaryColor;
+    }
+
+    &__phone-number {
+        line-height: 1;
+        font-size: 16px;
+        font-weight: 700;
+        transform: translateY(2px);
+    }
+
+    &__phone-text {
+        line-height: 1;
+        font-size: 14px;
+        font-weight: 300;
+        transform: translateY(2px);
+    }
+
+    &__burger {
+        position: relative;
+    }
+
+    &__link {
+        position: relative;
+        @include mobileClickAnimation;
+    }
+}
+
+@include burger(2.5px);
+
+@media (min-width: $smallMobile) {
+    @include burger(calc(2px + 0.15vw));
+}
+
+@media (min-width: $mobile) {
+    @include burger(3px);
+}
+
+.menu {
+
+    &__body {
+        display: flex;
+        flex-flow: row nowrap;
+        @include adaptiveValue("gap", 20px, 100px, $minWidth, $tablet);
+        position: fixed;
+        top: 0;
+        left: calc(100% + $minWidth);
+        right: calc(-100% - $minWidth);
+        min-width: $minWidth;
+        width: 100%;
+        height: 100%;
+        padding: 75px $containerPadding 30px;
+        @include adaptiveValue("padding-top", 80px, 140px, $smallMobile, $tablet);
+        overflow: auto;
+        background-color: $primaryColor;
+        transition: right 0.6s ease,
+                    left 0.6s ease;
+
+        @media (min-width: $tablet) {
+            display: block;
+            position: static;
+            padding: 0;
+            overflow: visible;
+            background-color: transparent;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: calc(100% + $minWidth);
+            right: calc(-100% - $minWidth);
+            width: 100%;
+            height: 50px;
+            background: $primaryColor;
+            z-index: 1;
+            transition: right 0.6s ease,
+                        left 0.6s ease;
+
+            @media (min-width: $smallMobile) {
+                @include adaptiveValue("height", 60px, 100px, $smallMobile, $tablet);
+            }
+    
+            .header_scroll & {
+    
+                @media (min-width: $smallMobile) {
+                    @include adaptiveValue("height", 50px, 60px, $smallMobile, $tablet);
+                }
+            }
+        }
+
+        .header_scroll & {
+            @include adaptiveValue("padding-top", 80px, 100px, $smallMobile, $tablet);
+
+            @media (min-width: $tablet) {
+                padding: 0;
+            }
+        }
+
+        &_active {
+            left: 0;
+            right: 0;
+
+            &::before {
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+
+    &__list {
+        @media (min-width: $tablet) {
+            display: flex; 
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__item {
+        position: relative;
+        @include adaptiveValue("margin-bottom", 20px, 40px, $minWidth, $tablet);
+
+        @media (min-width: $tablet) {
+            margin: 0;
+            @include adaptiveValue("height", 14px, 16px, $tablet, $desktop);
+        }
+
+        &_mobile {
+
+            @media (min-width: $tablet) {
+                display: none;
+            }
+        }
+    }
+
+    &__link {
+        display: inline-block;
+        white-space: nowrap;
+        line-height: 1;
+        @include adaptiveValue("font-size", 14px, 36px, $minWidth, $tablet);
+        font-weight: 400;
+        transition: opacity 0.3s ease;
+
+        @media (min-width: $tablet) {
+            @include adaptiveValue("font-size", 14px, 16px, $tablet, $desktop);
+        }
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                opacity: 0.7;
+            }
+        } 
+    }
+
+    &__right-side {
+
+        @media (min-width: $tablet) {
+            display: none;
+        }
+    }
+
+    &__registration {
+        @include adaptiveValue("margin-bottom", 30px, 50px, $minWidth, $tablet);
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $secondaryColor;
+        }
+    }
+
+    &__phone {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        @include adaptiveValue("gap", 10px, 20px, $minWidth, $tablet);
+        @include adaptiveValue("margin-bottom", 35px, 57px, $minWidth, $tablet);
+        color: $secondaryColor; 
+    }
+
+    &__phone-link {
+        display: flex;
+        align-items: center;
+        @include adaptiveValue("gap", 5px, 10px, $minWidth, $tablet);
+        transition: opacity 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__phone-icon {
+        @include adaptiveValue("width", 16px, 36px, $minWidth, $tablet);
+        @include adaptiveValue("height", 16px, 36px, $minWidth, $tablet);
+        fill: $secondaryColor;
+    }
+
+    &__phone-number {
+        transform: translateY(5%);
+        line-height: 1;
+        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $tablet);
+        font-weight: 700;
+    }
+
+    &__phone-text {
+        line-height: 1;
+        @include adaptiveValue("font-size", 14px, 32px, $minWidth, $tablet);
+        font-weight: 300;
+    }
+
+    &__email-link {
+        display: flex;
+        align-items: center;
+        @include adaptiveValue("gap", 5px, 10px, $minWidth, $tablet);
+        transition: opacity 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__email-icon {
+        @include adaptiveValue("width", 16px, 36px, $minWidth, $tablet);
+        @include adaptiveValue("height", 16px, 36px, $minWidth, $tablet);
+        fill: $secondaryColor;
+    }
+
+    &__email-adress {
+        transform: translateY(5%);
+        line-height: 1;
+        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $tablet);
+        font-weight: 500;
+    }
+}
+

@@ -1,0 +1,161 @@
+.delivery {
+    @include adaptiveValue("padding-top", 30px, 50px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 30px, 50px, $minWidth, $mobile);
+    background-color: $backgroundColor;
+    color: $thirdColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 50px, 70px, $mobile, $desktop);
+        @include adaptiveValue("padding-bottom", 50px, 70px, $mobile, $desktop);
+    }
+
+    &__container {
+        display: flex;
+        flex-flow: column-reverse nowrap;
+        align-items: flex-start;
+        @include adaptiveValue("gap", 40px, 90px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            flex-flow: row nowrap;
+            @include adaptiveValue("gap", 20px, 40px, $mobile, $desktop);
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: 100%;
+        flex: 0 0 auto;
+        @include adaptiveValue("height", 240px, 540px, $minWidth, $mobile);
+        overflow: hidden;
+
+        @media (min-width: $mobile) {
+            flex: 0 0 40%;
+            @include adaptiveValue("height", 400px, 530px, $mobile, $desktop);
+        }
+    }
+
+    &__photo {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+
+        @media (min-width: $mobile) {
+            left: auto;
+            right: -20%;
+            transform: translate(0%, -50%);
+        }
+    }
+
+    &__text {
+        width: 100%;
+        flex: 1 1 auto;
+
+        @media (min-width: $mobile) {
+            display: flex;
+            flex-flow: column nowrap;
+            align-self: stretch;
+        }
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 15px, 40px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            flex: 0 0 auto;
+            align-self: start;
+            @include adaptiveValue("margin-bottom", 30px, 50px, $mobile, $desktop);
+        }
+    }
+
+    &__title-brake {
+    }
+
+    &__advantages {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: start;
+        @include adaptiveValue("gap", 15px, 40px, $minWidth, $mobile);
+        width: 100%;
+
+        @media (min-width: $mobile) {
+            justify-content: space-between;
+            @include adaptiveValue("gap", 10px, 20px, $mobile, $desktop);
+            max-width: 70%;
+            flex: 1 1 auto;
+        }
+    }
+
+    &__advantage {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        @include adaptiveValue("gap", 15px, 30px, $minWidth, $mobile);
+        width: 100%;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("gap", 15px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__advantage-icon {
+        flex: 0 0 auto;
+        @include adaptiveValue("flex-basis", 20px, 30px, $minWidth, $mobile);
+        @include adaptiveValue("height", 20px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("flex-basis", 20px, 30px, $mobile, $desktop);
+            @include adaptiveValue("height", 20px, 30px, $mobile, $desktop);
+        }
+
+        &_type_box {
+            @include adaptiveValue("padding-top", 2px, 7px, $minWidth, $mobile);
+            stroke: $primaryColor;
+            stroke-width: 2;
+
+            @media (min-width: $mobile) {
+                padding-top: 4px;
+            }
+        }
+
+        &_type_tick {
+            @include adaptiveValue("padding-top", 3px, 7px, $minWidth, $mobile);
+            fill: $primaryColor;
+
+            @media (min-width: $mobile) {
+                padding-top: 4px;
+            }
+        }
+
+        &_type_lorry {
+            @include adaptiveValue("padding-top", 0px, 3px, $minWidth, $mobile);
+            fill: $primaryColor;
+            stroke: $primaryColor;
+
+            @media (min-width: $mobile) {
+                padding-top: 0;
+            }
+        }
+        
+        &_type_schedule {
+            @include adaptiveValue("padding-top", 0px, 4px, $minWidth, $mobile);
+            fill: $primaryColor;
+
+            @media (min-width: $mobile) {
+                padding-top: 0;
+            }
+        }
+    }
+
+    &__advantage-text {
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 14px, 32px, $minWidth, $mobile);
+        font-weight: 400;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 18px, 20px, $mobile, $desktop);
+        }
+    }
+}

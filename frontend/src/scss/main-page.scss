@@ -1,0 +1,679 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 50px;
+
+    @media (min-width: $smallMobile) {
+        @include adaptiveValue("scroll-padding-top", 50px, 60px, $smallMobile, $tablet);
+    }
+}
+
+body {
+    background-color: $secondaryColor;
+    font-family: $Muller;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: $secondaryColor;
+    
+    &.locked {
+        overflow: hidden;
+    }
+}
+
+.scroller {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    overflow-y: scroll;
+    z-index: 199;
+    pointer-events: none;
+
+    &.disable-pointer {
+        z-index: 300;
+        pointer-events: auto;
+    }
+}
+
+.page-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100%;
+    overflow: hidden;
+
+    &__page-content {
+        flex: 1 1 auto;
+    }
+}
+
+.main-page {
+
+    &__title-screen {
+    
+    }
+
+    &__about {
+        
+    }
+
+    &__complectation {
+        
+    }
+
+    &__pellets {
+        
+    }
+
+    &__accessories {
+        
+    }
+
+    &__safety {
+        
+    }
+
+    &__companion {
+        
+    }
+
+    &__constructive {
+        
+    }
+
+    &__order {
+        
+    }
+
+    &__delivery {
+        
+    }
+
+    &__questions {
+        
+    }
+}
+
+.container {
+    max-width: $maxContainerWidth;
+    min-width: $minWidth;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 $containerPadding;
+}
+
+.button {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+
+    @media (any-hover: hover) {
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: var(--hy);
+            left: var(--hx);
+            height: 300%;
+            aspect-ratio: 1/1;
+            z-index: 1;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        &:hover {           
+
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        &.button_clicked:hover::before {
+            opacity: 0;                
+        }
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: var(--y);
+        left: var(--x);
+        width: 0;
+        height: 0;
+        z-index: 2;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s linear,
+                    height 0.3s linear 0.3s,
+                    width 0.3s linear 0.3s;
+    }
+
+    &.button_clicked::after {
+        opacity: 1;
+        width: calc(2.2 * var(--r));
+        height: calc(2.2 * var(--r));
+        transition: opacity 0.3s linear,
+                    height 0.3s linear,
+                    width 0.3s linear;
+    }
+
+    &_color_primary {
+        background-color: $primaryColor;
+        color: $secondaryColor;
+
+        @media (any-hover: hover) {
+
+            &::before {
+                background: radial-gradient(circle farthest-side at 50% 50%, 
+                                          #fd4e18 5%,
+                                            transparent);
+            }
+    
+            &:hover {           
+                background-color: #b63109;
+            }
+        }
+
+        &::after {
+            background: radial-gradient(circle farthest-side at 50% 50%, 
+                                        #fd4e18 15%,
+                                        rgba(158, 42, 7, 0.3) 40%, 
+                                        rgba(158, 42, 7, 0.6) 70%, 
+                                        rgba(158, 42, 7, 0.9) 90%, 
+                                        transparent);
+        }
+    }
+
+    &_color_white {
+        background-color: transparent;
+        color: $primaryColor;
+        border: 2px solid $primaryColor;
+        transition: background-color 0.3s ease, 
+                    color 0.3s ease, 
+                    border-color 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &::before {
+                background: radial-gradient(circle farthest-side at 50% 50%, 
+                                          #FFF 30%,
+                                            transparent);
+            }
+    
+            &:hover {           
+                background-color: rgba(210, 67, 24, 0.15);
+                color: #b63109;
+                border-color: #b63109;
+            }
+        }
+
+        &::after {
+            background: radial-gradient(circle farthest-side at 50% 50%, 
+                                        #FFF 15%,
+                                        rgba(210, 67, 24, 0.1) 40%, 
+                                        rgba(210, 67, 24, 0.15) 70%, 
+                                        rgba(210, 67, 24, 0.3) 90%, 
+                                        transparent);
+        }
+    }
+
+    &_color_transparent {
+        background-color: transparent;
+        color: $secondaryColor;
+        border: 2px solid $secondaryColor;
+        transition: background-color 0.3s ease, 
+                    color 0.3s ease, 
+                    border-color 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &::before {
+                background: radial-gradient(circle farthest-side at 50% 50%, 
+                                            rgba(255, 255, 255, 0.2) 5%,
+                                            transparent);
+            }
+    
+            &:hover {           
+                color: $primaryColor;
+                border-color: $primaryColor;
+            }
+        }
+
+        &::after {
+            background: radial-gradient(circle farthest-side at 50% 50%, 
+                                       rgba(255, 255, 255, 0.5) 15%,
+                                       rgba(255, 255, 255, 0.4) 30%, 
+                                       rgba(255, 255, 255, 0.3) 60%, 
+                                       rgba(255, 255, 255, 0.2) 90%, 
+                                        transparent);
+        }
+    }
+
+    &__text {
+        z-index: 10;
+        text-transform: uppercase;
+        line-height: 1;
+        font-family: $TTNorms;
+        font-weight: 500;
+        pointer-events: none;
+    }
+}
+
+.observing {
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    &_shown {
+        opacity: 1;
+    }
+}
+
+.title {
+    display: inline-flex;
+    position: relative;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    @include adaptiveValue("gap", 5px, 10px, $minWidth, $mobile);
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("gap", 10px, 15px, $mobile, $desktop);
+    }
+    
+    &__icon {
+        @include adaptiveValue("width", 11px, 22px, $minWidth, $mobile);
+        @include adaptiveValue("height", 20px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 0px, 3px, $minWidth, $mobile);
+        fill: $primaryColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 16px, 20px, $mobile, $desktop);
+            @include adaptiveValue("height", 29px, 35px, $mobile, $desktop);
+            @include adaptiveValue("padding-top", 0px, 5px, $mobile, $desktop);
+        }
+    }
+    
+    &__text {
+        font-family: $Muller;
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 20px, 48px, $minWidth, $mobile);
+        font-weight: 700;
+        color: $thirdColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 28px, 48px, $mobile, $desktop);
+        }
+    }
+
+    &__brake {
+
+    }
+
+    &__line {
+        position: absolute;
+        @include adaptiveValue("top", 11px, 25px, $minWidth, $mobile);
+        left: calc(100% + 15px);
+        width: 100vw;
+        height: 1px;
+        background-color: $primaryColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("top", 15px, 25px, $mobile, $desktop);
+        }
+
+        .observing & {
+            width: 0;
+            transition: width 2s linear 0.3s;
+
+        }
+
+        .observing_shown & {
+            width: 100vw;
+        }
+    }
+}
+
+.slider-button {
+    display: block;
+    @include adaptiveValue("width", 30px, 64px, $minWidth, $mobile);
+    @include adaptiveValue("height", 30px, 64px, $minWidth, $mobile);
+    border-radius: 50%;
+    background-color: rgba(210, 67, 24, 0.25);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    @media (min-width: $mobile) {
+        width: 48px;
+        height: 48px;
+    }
+
+    @media(any-hover: hover) {
+
+        &:hover {
+            background-color: rgba(210, 67, 24, 0.7);
+        }
+    }
+
+    @media (any-hover: none) {
+
+        &_clicked {
+            background-color: rgba(210, 67, 24, 0.7);
+        }
+    }
+
+    &__icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        stroke: $secondaryColor;
+        stroke-width: 2;
+        pointer-events: none;
+
+        &_type_prev {
+            transform: translate(-55%, -50%) rotate(180deg);
+        }
+
+        &_type_next {
+            transform: translate(-45%, -50%);
+        }
+    }
+}
+
+.fraction-pagination {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    @include adaptiveValue("width", 40px, 100px, $minWidth, $mobile);
+    @include adaptiveValue("height", 20px, 50px, $minWidth, $mobile);
+    background-color: $primaryColor;
+    font-family: $TTNorms;
+    line-height: 1.2;
+    @include adaptiveValue("font-size", 12px, 28px, $minWidth, $mobile);
+    font-weight: 400;
+    color: $secondaryColor;
+
+    @media (min-width: $mobile) {
+        width: 70px;
+        height: 48px;
+        font-size: 18px;
+    }
+
+    span {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 25%;
+        text-align: center;
+
+        &.swiper-pagination-current {
+            text-align: right;
+        }
+        &.swiper-pagination-total {
+            text-align: left;
+        }
+    }
+}
+
+.form {
+
+    &__input-wrapper {
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        @include adaptiveValue("height", 35px, 80px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            height: 40px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__input-icon-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 auto;
+        height: 100%;
+        aspect-ratio: 1/1;
+        background-color: $primaryColor;
+    }
+
+    &__input-icon {
+        display: block;
+        width: 50%;
+        height: 50%;
+        fill: $secondaryColor;
+    }
+
+    &__input {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 100%;
+        @include adaptiveValue("padding", 7px, 16px, $minWidth, $mobile);
+        background-color: $backgroundColor;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.25);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 17px, 40px, $minWidth, $mobile);
+        font-weight: 400;
+        transition: box-shadow 0.3s ease;
+        
+        @media (min-width: $mobile) {
+            padding: 8px;
+            font-size: 20px;
+        }
+
+        &:focus {
+            box-shadow: inset 0 0 3px $primaryColor;
+        }
+
+        &::placeholder {
+			color: #C7C7C7;
+		}
+    }
+
+    &__agreement {
+        display: flex;
+        position: relative;
+        align-items: flex-start;
+        @include adaptiveValue("margin-bottom", 20px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("padding-bottom", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("line-height", 14px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 12.5px, 18px, $minWidth, $mobile);
+        font-weight: 400;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (min-width: $mobile) {
+            margin-bottom: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            line-height: 14px;
+            font-size: 12.5px;
+        }
+    }
+
+    &__agreement-input {
+        display: block;
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &__agreement-checkbox {
+        position: relative;
+        @include adaptiveValue("margin-right", 5px, 10px, $minWidth, $mobile);
+        flex-grow: 0;
+        flex-shrink: 0;
+        @include adaptiveValue("flex-basis", 8px, 12px, $minWidth, $mobile);
+        @include adaptiveValue("height", 8px, 12px, $minWidth, $mobile);
+        @include adaptiveValue("margin-top", 2px, 3px, $minWidth, $mobile);
+        border: 1px solid #C7C7C7;
+
+        @media (min-width: $mobile) {
+            flex-basis: 8px;
+            height: 8px;
+            margin-top: 2px;
+            margin-right: 5px;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 50%;
+            bottom: 50%;
+            @include adaptiveValue("width", 4px, 6px, $minWidth, $mobile);
+            @include adaptiveValue("height", 6px, 9px, $minWidth, $mobile);
+            border-right: 1px solid $primaryColor;
+            border-bottom: 1px solid $primaryColor;
+            transform: translate(50%, 45%) rotate(45deg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            @media (min-width: $mobile) {
+                width: 4px;
+                height: 6px;
+            }
+
+            .form__agreement-input:checked + & {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__agreement-text {
+        color: #C7C7C7;
+        transition: color 0.3s ease;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: $primaryColor;
+            }
+        }
+
+        .form__agreement-input:checked ~ & {
+            color: $primaryColor;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        @include adaptiveValue("height", 50px, 100px, $minWidth, $mobile);
+        align-self: end;
+
+        @media (min-width: $mobile) {
+            height: 60px;
+        }
+    }
+
+    &__button-text {
+        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            font-size: 18px;
+        }
+    }
+}
+
+/* 
+.prices {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+        @media (min-width: $smallMobile) {
+            flex-flow: row nowrap;
+            align-items: start;
+            @include adaptiveValue("gap", 0px, 5px, $smallMobile, $mobile);
+        }
+
+        @media (min-width: $mobile) {
+            gap: 20px;
+        }
+
+    &__price {
+        font-weight: 800;
+        color: $secondaryColor;
+        line-height: 32px;
+        font-size: 26px;
+
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("min-width", 135px, 200px, $smallMobile, $mobile);
+            @include adaptiveValue("line-height", 36px, 58px, $smallMobile, $mobile);
+            @include adaptiveValue("font-size", 30px, 48px, $smallMobile, $mobile);
+        }
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("min-width", 135px, 200px, $mobile, $tablet);
+            @include adaptiveValue("line-height", 36px, 58px, $mobile, $tablet);
+            @include adaptiveValue("font-size", 30px, 48px, $mobile, $tablet);
+        }
+    }
+
+    &__value {
+    }
+
+    &__currency {
+    }
+
+    &__old-price {
+        text-decoration: line-through;
+        font-weight: 200;
+        line-height: 20px;
+        font-size: 16px;
+
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("line-height", 22px, 30px, $smallMobile, $mobile);
+            @include adaptiveValue("font-size", 18px, 24px, $smallMobile, $mobile);
+        }
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("line-height", 26px, 30px, $mobile, $maxContainerWidth);
+            @include adaptiveValue("font-size", 22px, 24px, $mobile, $maxContainerWidth);
+        }
+
+        &_color_dark {
+            color: $thirdColor;
+        }
+
+        &_color_orange {
+            color: $primaryColor;
+        }
+    }
+
+    &__old-value {
+    }
+} */
+
+@import "sections/title-screen.scss";
+@import "sections/about.scss";
+@import "sections/complectation.scss";
+@import "sections/pellets.scss";
+@import "sections/accessories.scss";
+@import "sections/safety.scss";
+@import "sections/companion.scss";
+@import "sections/constructive.scss";
+@import "sections/order.scss";
+@import "sections/delivery.scss";
+@import "sections/questions.scss";
+

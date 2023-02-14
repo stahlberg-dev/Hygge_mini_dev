@@ -1,0 +1,93 @@
+<section class="main-order order" id="order">
+    <div class="order__container container">
+        <div class="order__content">
+            <h2 class="order__title">
+                Походная печь Hyggelig Mini
+            </h2>
+            <div class="order__subtitle">
+                Твой надежный друг в&nbsp;любой точке&nbsp;мира
+            </div>
+            <form class="order__form form jsOrderForm jsPromoCode" action="#">
+                <div class="order__prices">
+                    <div class="order__old-price jsPriceOld">
+                        <span class="value">18&nbsp;390</span>&nbsp;₽
+                    </div>
+                    <div class="order__price jsPrice">
+                        <span class="value">35&nbsp;990</span>&nbsp;₽
+                    </div>
+                </div>
+                <div class="order__input-wrapper form__input-wrapper">
+                    <div class="order__input-icon-wrapper form__input-icon-wrapper">
+                        <svg class="order__input-icon form__input-icon">
+                            <use xlink:href="img/icon_sprite/sprite.svg#person"></use>
+                        </svg>
+                    </div>
+                    <input class="order__input form__input" type="text" name="name" required placeholder="Имя">
+                </div>
+                <div class="order__input-wrapper form__input-wrapper">
+                    <div class="order__input-icon-wrapper form__input-icon-wrapper">
+                        <svg class="order__input-icon form__input-icon">
+                            <use xlink:href="img/icon_sprite/sprite.svg#phone"></use>
+                        </svg>
+                    </div>
+                    <input class="order__input form__input form__input_phone-mask" type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="order__input-wrapper form__input-wrapper">
+                    <div class="order__input-icon-wrapper form__input-icon-wrapper">
+                        <svg class="order__input-icon order__input-icon_type_promo form__input-icon">
+                            <use xlink:href="img/icon_sprite/sprite.svg#promo"></use>
+                        </svg>
+                    </div>
+                    <input class="order__input form__input jsPromoCodeInput" type="text" name="promo" placeholder="Промокод">
+                    <div class="order__input-promo-btn">
+                        <svg class="order__input-promo-btn-icon">
+                            <use xlink:href="img/icon_sprite/sprite.svg#slider-arrow"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="order__promo-info jsPromoCodeInfo"></div>
+                <label class="order__agreement form__agreement">
+                    <input type="checkbox" class="order__agreement-input form__agreement-input" name="agreement" checked required> 
+                    <div class="order__agreement-checkbox form__agreement-checkbox"></div>
+                    <div class="order__agreement-text form__agreement-text">
+                        Я&nbsp;даю&nbsp;согласие на&nbsp;обработку своих персональных данных
+                    </div>
+                </label>
+                <button type="submit" class="order__button form__button button button_color_primary">
+                    <div class="order__button-text form__button-text button__text">Купить</div>
+                </button>
+                <div class="order__installment">
+                    <div class="order__installment-info">
+                        <div class="order__installment-title">
+                            <svg class="order__installment-icon">
+                                <use xlink:href="img/icon_sprite/sprite.svg#installment"></use>
+                            </svg>
+                            <div class="order__installment-title-text">
+                                Рассрочка&nbsp;от&nbsp;Тинькофф
+                            </div>
+                        </div>
+                        <div class="order__installment-plan jsPricePart" data-price-part="0.16667">
+                            на&nbsp;6&nbsp;месяцев за&nbsp;<span class="value">3&nbsp;065</span>&nbsp;₽
+                        </div>
+                    </div>
+                    <div class="order__installment-button 
+                                button button_color_white 
+                                jsCreditRequestBtn">
+                        <div class="order__installment-button-text button__text">В&nbsp;рассрочку</div>        
+                    </div>
+                </div>
+                <div data-popup="consultation"
+                     class="order__consultation-button 
+                            form__button 
+                            button 
+                            button_color_white 
+                            jsOpenCallbackPopup">
+                    <div class="order__consultation-button-text form__button-text button__text">Получить&nbsp;консультацию</div>        
+                </div>
+            </form>
+            <div class="order__content-image"></div>  
+        </div>
+        <div class="order__image">
+            <img src="img/order/oven.webp" alt="печь" class="order__photo">
+        </div>
+</section>

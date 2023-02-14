@@ -1,0 +1,56 @@
+.order-success-page {
+
+    &__order-success {
+
+    }
+}
+.order-success {
+    height: 100%;
+    @include adaptiveValue("padding-top", 80px, 130px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 30px, 50px, $minWidth, $mobile);
+    color: $thirdColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 130px, 170px, $mobile, $desktop);
+        @include adaptiveValue("padding-bottom", 50px, 70px, $mobile, $desktop);
+    }
+
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 30px, 50px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 30px, 50px, $mobile, $desktop);
+        }
+    }
+
+    &__order-info {
+        font-family: $TTNorms;
+        font-weight: 500;
+    }
+
+    &__order-number {
+        @include adaptiveValue("margin-bottom", 10px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 18px, 36px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 20px, 28px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 15px, 30px, $mobile, $desktop);
+        }
+    }
+
+    &__order-number-value {
+        font-weight: 700;
+        color: $primaryColor;
+    }
+
+    &__order-message {
+        @include adaptiveValue("font-size", 14px, 28px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
+        }
+    }
+}

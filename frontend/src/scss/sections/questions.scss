@@ -1,0 +1,247 @@
+.questions {
+    @include adaptiveValue("padding-top", 30px, 50px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 30px, 50px, $minWidth, $mobile);
+    color: $thirdColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 50px, 70px, $mobile, $desktop);
+        @include adaptiveValue("padding-bottom", 50px, 70px, $mobile, $desktop);
+    }
+
+    &__container {
+    }
+
+    &__title {
+        text-align: center;
+        font-family: $Muller;
+        line-height: 1.2;
+        @include adaptiveValue("font-size", 22px, 48px, $minWidth, $mobile);
+        font-weight: 700;
+        color: $thirdColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 28px, 48px, $mobile, $desktop);
+        }
+    }
+
+    &__accordion {
+        width: 100%;
+
+        @media (min-width: $mobile) {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    }
+}
+
+.accordion {
+
+    &__section {
+        @include adaptiveValue("margin-top", 20px, 40px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-top", 30px, 40px, $mobile, $desktop);
+        }
+    }
+
+    &__section-title {
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 10px;
+        padding: 0 5px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (min-width: $mobile) {
+            gap: 30px;
+        }
+
+        @include mobileClickAnimation(#909090, 10px, 0px);
+    }
+
+    &__section-title-text {
+        flex: 1 1 auto;
+        @include adaptiveValue("font-size", 18px, 40px, $minWidth, $mobile);
+        font-weight: 700;
+        color: $primaryColor;
+        transition: opacity 0.3s ease;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 30px, 40px, $mobile, $desktop);
+        }
+
+        @media (any-hover: hover) {
+
+            .accordion__section-title:hover & {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__section-title-icon {
+        position: relative;
+        flex: 0 0 auto;
+        @include adaptiveValue("width", 10px, 30px, $minWidth, $mobile);
+        @include adaptiveValue("height", 10px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            width: 15px;
+            height: 15px;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform-origin: center bottom;
+            transform: translateX(-50%) rotate(-45deg) scaleY(0.8);
+            width: 2px;
+            height: 100%;
+            background-color: $thirdColor;
+            transition: transform 0.5s ease, 
+                        left 0.5s ease;
+
+            .accordion__section_active & {
+                left: 13.5%;
+                transform: translateX(-50%) rotate(45deg);
+            }
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform-origin: center bottom;
+            transform: translateX(-50%) rotate(45deg) scaleY(0.8);
+            width: 2px;
+            height: 100%;
+            background-color: $thirdColor;
+            transition: transform 0.5s ease, 
+                        left 0.5s ease;
+
+            .accordion__section_active & {
+                left: 86.5%;
+                transform: translateX(-50%) rotate(-45deg);
+            }
+        }
+    }
+
+    &__section-list-wrapper {
+        padding: 0 5px;
+    }
+
+    &__section-list {
+
+    }
+
+    &__subsection {
+        @include adaptiveValue("padding-top", 15px, 30px, $minWidth, $mobile);
+        //@include adaptiveValue("padding-left", 5px, 20px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("padding-top", 20px, 30px, $mobile, $desktop);
+            //@include adaptiveValue("padding-left", 20px, 30px, $mobile, $desktop);
+        }
+    }
+
+    &__subsection-title {
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (min-width: $mobile) {
+            gap: 30px;
+        }
+
+        @include mobileClickAnimation(#909090, 10px, 10px);
+    }
+
+    &__subsection-title-text {
+        flex: 1 1 auto;
+        @include adaptiveValue("font-size", 14px, 26px, $minWidth, $mobile);
+        font-weight: 700;
+        transition: opacity 0.3s ease;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 16px, 18px, $mobile, $desktop);
+        }
+
+        @media (any-hover: hover) {
+
+            .accordion__subsection-title:hover & {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__subsection-title-icon {
+        position: relative;
+        flex: 0 0 auto;
+        @include adaptiveValue("width", 10px, 30px, $minWidth, $mobile);
+        @include adaptiveValue("height", 10px, 30px, $minWidth, $mobile);
+        transition: transform 0.5s ease;
+
+        @media (min-width: $mobile) {
+            width: 15px;
+            height: 15px;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 2px;
+            background-color: $thirdColor;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%) rotate(90deg);
+            width: 100%;
+            height: 2px;
+            background-color: $thirdColor;
+        }
+
+        .accordion__subsection_active & {
+            transform: rotate(225deg);
+        }
+    }
+
+    &__subsection-content {
+
+    }
+
+    &__subsection-text {
+        @include adaptiveValue("padding-top", 5px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("padding-left", 5px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("padding-right", 10px, 30px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 16px, 28px, $minWidth, $mobile);
+        font-weight: 400;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("padding-top", 10px, 15px, $mobile, $desktop);
+            @include adaptiveValue("padding-left", 10px, 15px, $mobile, $desktop);
+            @include adaptiveValue("padding-right", 15px, 20px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 18px, 20px, $mobile, $desktop);
+        }
+    }
+}

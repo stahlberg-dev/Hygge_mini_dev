@@ -1,0 +1,181 @@
+.constructive {
+    @include adaptiveValue("padding-top", 20px, 40px, $minWidth, $mobile);
+    background-color: $backgroundColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 25px, 35px, $mobile, $desktop);
+    }
+
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 10px, 40px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 20px, 30px, $mobile, $desktop);
+        }
+    }
+
+    &__title-brake {
+
+        @media (min-width: $mobile) {
+            display: none;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-flow: column nowrap;
+        @include adaptiveValue("gap", 30px, 80px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            flex-flow: row nowrap;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    }
+
+    &__text {
+        position: relative;
+        color: $thirdColor;
+
+        @media (min-width: $mobile) {
+            flex: 1 1 auto;
+        }
+    }
+
+    &__thumb-slider {
+        position: relative;
+        width: calc(100vw - 2 * $containerPadding);
+        overflow: hidden;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 280px, 370px, $mobile, $desktop);
+        }
+    }
+
+    &__thumb-slider-wrapper {
+    }
+
+    &__thumb-slide {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    &__thumb-slide-title {
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 18px, 40px, $minWidth, $mobile);
+        font-weight: 700;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 5px, 10px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 18px, 32px, $mobile, $desktop);
+        }
+    }
+
+    &__thumb-slide-text {
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 13px, 30px, $minWidth, $mobile);
+        font-weight: 400;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__mountaine {
+        display: none;
+
+        @media (min-width: $mobile) {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 40%;
+
+            &.observing_shown {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &__slider-container {
+        position: relative;
+        width: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        @include adaptiveValue("flex-basis", 220px, 530px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 420px, 770px, $mobile, $desktop);
+            @include adaptiveValue("flex-basis", 420px, 770px, $mobile, $desktop);
+            @include adaptiveValue("height", 320px, 550px, $mobile, $desktop);
+        }
+    }
+
+    &__slider {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__slider-wrapper {
+
+    }
+
+    &__slide {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    &__slide-image {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__slider-prev-button,
+    &__slider-next-button {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    &__slider-next-button {
+        left: auto;
+        right: 5%;
+    }
+
+    &__slider-prev-icon {
+        
+    }
+
+    &__slider-next-icon {
+
+    }
+
+    &__slider-pagination {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+        z-index: 1;
+
+        @media (min-width: $mobile) {
+            top: auto;
+            bottom: 0;
+            transform: translateX(-100%);
+        }
+    }
+}

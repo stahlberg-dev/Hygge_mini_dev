@@ -1,0 +1,438 @@
+.complectation {
+    @include adaptiveValue("padding-top", 30px, 60px, $minWidth, $mobile);
+    @include adaptiveValue("padding-bottom", 30px, 60px, $minWidth, $mobile);
+    color: $thirdColor;
+
+    @media (min-width: $mobile) {
+        @include adaptiveValue("padding-top", 30px, 50px, $mobile, $desktop);
+        @include adaptiveValue("padding-bottom", 30px, 50px, $mobile, $desktop);
+    }
+
+    &__container {
+    }
+
+    &__title {
+        @include adaptiveValue("margin-bottom", 10px, 15px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__title-brake {
+        display: inline;
+
+        @media (min-width: $mobile) {
+            display: none;
+        }
+    }
+
+    &__subtitle {
+        @include adaptiveValue("margin-bottom", 20px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 18px, 32px, $minWidth, $mobile);
+        font-weight: 500;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("max-width", 500px, 650px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 30px, 40px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 24px, 32px, $mobile, $desktop);
+        }
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    &__background {
+        display: none;
+
+        @media (min-width: $mobile) {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position-x: 50%;
+            background-position-y: bottom;
+            background-size: contain;
+            background-image: url("../img/complectation/background.webp");
+        }
+    }
+
+    &__content-main {
+        @include adaptiveValue("margin-bottom", 20px, 40px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            @include adaptiveValue("margin-bottom", 30px, 40px, $mobile, $desktop);
+        }
+    }
+
+    &__captions {
+        display: none;
+
+        @media (min-width: $mobile) {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: start;
+            @include adaptiveValue("gap", 10px, 20px, $mobile, $desktop);
+            z-index: 10;
+        }
+    }
+
+    &__caption {
+
+        @media (min-width: $mobile) {
+            line-height: 1;
+            @include adaptiveValue("font-size", 14px, 20px, $mobile, $desktop);
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+
+            &_active {
+                color: $primaryColor;
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: 100%;
+        padding-bottom: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+
+        @media (min-width: $mobile) {
+            flex: 0 0 auto;
+            @include adaptiveValue("flex-basis", 350px, 600px, $mobile, $desktop);
+            @include adaptiveValue("height", 350px, 600px, $mobile, $desktop);
+            padding-bottom: 0;
+        }
+    }
+
+    &__photo {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__points {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        @media (min-width: $mobile) {
+            display: none;
+        }
+    }
+
+    &__point {
+        position: absolute;
+        @include adaptiveValue("width", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("height", 10px, 20px, $minWidth, $mobile);
+        border-radius: 50%;
+        border: 1px solid $primaryColor;
+        box-shadow: 0px 0px 2px 1px rgba(210, 67, 24, 1),
+                    inset 0px 0px 2px 1px rgba(210, 67, 24, 1);
+        background-color: $backgroundColor;
+        transition: transform 0.3s ease;
+
+        @media (min-width: $smallMobile) {
+            border-width: 3px;
+        }
+
+        &[data-point="surface"] {
+            top: 49%;
+            left: 53%;
+        }
+
+        &[data-point="window"] {
+            top: 59%;
+            left: 57%;
+        }
+
+        &[data-point="screen"] {
+            top: 69%;
+            left: 57%;
+        }
+
+        &[data-point="chamber"] {
+            top: 40%;
+            left: 42%;
+        }
+
+        &[data-point="bunker"] {
+            top: 28%;
+            left: 42%;
+        }
+
+        &[data-point="cap"] {
+            top: 20%;
+            left: 47%;
+        }
+
+        &[data-point="catcher"] {
+            top: 56%;
+            left: 36%;
+        }
+
+        &[data-point="damper"] {
+            top: 57%;
+            left: 30%;
+        }
+
+        &[data-point="trotters"] {
+            top: 80%;
+            left: 39%;
+        }
+
+        &[data-point="chimney"] {
+            top: 33%;
+            left: 58%;
+        }
+
+        &::before, 
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0px 0px 3px 1px rgba(210, 67, 24, 1),
+                        inset 0px 0px 2px 1px rgba(210, 67, 24, 1);
+            opacity: 0;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 4.0s;
+        }
+
+        &::before {
+            animation-name: pulse-1;
+            animation-delay: 2.0s;
+        }
+
+        &::after {
+            animation-name: pulse-2;
+        }
+        
+        @keyframes pulse-1 {
+
+            from {
+              opacity: 0;
+              transform: scale(0.5, 0.5);
+            }
+
+            50% {
+                opacity: 1;
+            }
+           
+            to {
+                opacity: 0;
+                transform: scale(2.7, 2.7);
+            }
+        }
+           
+        @keyframes pulse-2 {
+
+            from {
+                opacity: 0;
+                transform: scale(0.5, 0.5);
+            }
+
+            50% {
+                opacity: 1;
+            }
+        
+            to {
+                opacity: 0;
+                transform: scale(2.7, 2.7);
+            }
+        }
+        
+        &_active {
+            box-shadow: none;
+            transform: scale(1.2, 1.2);
+            z-index: 1;
+
+            &::before,
+            &::after {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &__point-label {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-10% - 3.5vw)) scale(0, 0);
+        z-index: 1;
+        padding: 1.5vw;
+        background-color: $primaryColor;
+        color: $secondaryColor;
+        text-align: center;
+        @include adaptiveValue("font-size", 12px, 24px, $minWidth, $mobile);
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%) rotate(45deg);
+            width: 2vw;
+            height: 2vw;
+            background-color: $primaryColor;
+        }
+
+        &_active {
+            opacity: 1;
+            transform: translate(-50%, calc(-100% - 3.3vw)) scale(1, 1);
+        }
+    }
+
+    &__numbers {
+        display: none;
+
+        @media (min-width: $mobile) {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    }
+
+    &__number {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include adaptiveValue("width", 20px, 25px, $mobile, $tablet);
+        @include adaptiveValue("height", 20px, 25px, $mobile, $tablet);
+        transform: translate(-50%, -50%) scale(0, 0);
+        border-radius: 50%;
+        border: 2px solid $primaryColor;
+        background-color: $backgroundColor;
+        transition: transform 0.3s ease;
+
+        @media (min-width: $tablet) {
+            border-width: 3px;
+        }
+
+        &[data-number="surface"] {
+            top: 49%;
+            left: 53%;
+        }
+
+        &[data-number="window"] {
+            top: 59%;
+            left: 57%;
+        }
+
+        &[data-number="screen"] {
+            top: 69%;
+            left: 57%;
+        }
+
+        &[data-number="chamber"] {
+            top: 40%;
+            left: 42%;
+        }
+
+        &[data-number="bunker"] {
+            top: 28%;
+            left: 42%;
+        }
+
+        &[data-number="cap"] {
+            top: 17%;
+            left: 42%;
+        }
+
+        &[data-number="catcher"] {
+            top: 56%;
+            left: 37%;
+        }
+
+        &[data-number="damper"] {
+            top: 57%;
+            left: 31%;
+        }
+
+        &[data-number="trotters"] {
+            top: 80%;
+            left: 40%;
+        }
+
+        &[data-number="chimney"] {
+            top: 33%;
+            left: 58%;
+        }
+
+        &_active {
+            transform: translate(-50%, -50%) scale(1, 1);
+        }
+    }
+    
+
+    &__number-text {
+        line-height: 1;
+        @include adaptiveValue("font-size", 9px, 13px, $mobile, $tablet);
+        font-weight: 700;
+        color: $primaryColor;
+    }
+
+    &__content-buttons {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        @include adaptiveValue("gap", 20px, 30px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            flex-flow: row nowrap;
+            justify-content: center;
+            @include adaptiveValue("gap", 15px, 20px, $mobile, $desktop);
+        }
+    }
+
+    &__button {
+        width: 100%;
+        @include adaptiveValue("height", 50px, 100px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 220px, 320px, $mobile, $desktop);
+            @include adaptiveValue("height", 40px, 60px, $mobile, $desktop);
+        }
+    }
+
+    &__button-text {
+        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 12px, 18px, $mobile, $desktop);
+        }
+    }
+}
+
