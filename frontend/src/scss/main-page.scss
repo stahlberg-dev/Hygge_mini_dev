@@ -1,9 +1,9 @@
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 50px;
+    scroll-padding-top: 48px;
 
     @media (min-width: $smallMobile) {
-        @include adaptiveValue("scroll-padding-top", 50px, 60px, $smallMobile, $tablet);
+        @include adaptiveValue("scroll-padding-top", 48px, 58px, $smallMobile, $tablet);
     }
 }
 

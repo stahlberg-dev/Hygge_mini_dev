@@ -14,7 +14,7 @@ export function swiperAboutSlider() {
         slidesPerView: 1,
         spaceBetween: 20,
         watchOverflow: true,
-        speed: 800,
+        speed: 500,
         loop: true,
         preloadImages: false,
         lazy: {
@@ -61,7 +61,7 @@ export function swiperConstructiveSlider() {
         slidesPerView: 1,
         spaceBetween: 0,
         watchOverflow: true,
-        speed: 800,
+        speed: 200,
         loop: true,
         allowTouchMove: false,
         breakpoints: {
@@ -77,7 +77,7 @@ export function swiperConstructiveSlider() {
         slidesPerView: 1,
         spaceBetween: 20,
         watchOverflow: true,
-        speed: 800,
+        speed: 500,
         loop: true,
         preloadImages: false,
         lazy: {

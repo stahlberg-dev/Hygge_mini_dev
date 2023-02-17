@@ -227,22 +227,43 @@
         }
     }
 
+    &__background {
+        display: block;
+        position: absolute;
+        top: 15%;
+        left: -128%;
+        width: auto;
+        height: 45%;
+        z-index: -1;
+
+        @media (min-width: $mobile) {
+            top: 18%;
+            @include adaptiveValue("left", -105px, -200px, $mobile, $desktop);
+        }
+    }
+
     &__photo {
         display: block;
+        position: relative;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         @include adaptiveValue("height", 400px, 900px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
+            @include adaptiveValue("left", 105px, 180px, $mobile, $desktop);
+            transform: none;
             @include adaptiveValue("height", 600px, 1060px, $mobile, $desktop);
         }
     }
 
     &__width {
         position: absolute;
-        @include adaptiveValue("bottom", 20px, 60px, $minWidth, $mobile);
-        @include adaptiveValue("left", 70px, 205px, $minWidth, $mobile);
+        @include adaptiveValue("bottom", 25px, 65px, $minWidth, $mobile);
+        @include adaptiveValue("left", 5px, 55px, $minWidth, $mobile);
         @include adaptiveValue("font-size", 14px, 20px, $minWidth, $mobile);
         white-space: nowrap;
-        font-weight: 400;
+        font-weight: 500;
         color: $thirdColor;
 
         @media (min-width: $mobile) {
@@ -255,16 +276,16 @@
     &__height {
         position: absolute;
         bottom: 55%;
-        @include adaptiveValue("left", 80px, 270px, $minWidth, $mobile);
+        @include adaptiveValue("left", 10px, 115px, $minWidth, $mobile);
         transform: rotate(-90deg);
         @include adaptiveValue("font-size", 14px, 20px, $minWidth, $mobile);
         white-space: nowrap;
-        font-weight: 400;
+        font-weight: 500;
         color: $thirdColor;
 
         @media (min-width: $mobile) {
             bottom: 30%;
-            @include adaptiveValue("left", 290px, 500px, $mobile, $desktop);
+            @include adaptiveValue("left", 290px, 505px, $mobile, $desktop);
             transform-origin: left center;
             @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
         }
@@ -276,7 +297,7 @@
         justify-content: center;
         align-items: center;
         top: 10%;
-        left: 20%;
+        left: 3%;
         @include adaptiveValue("width", 50px, 100px, $minWidth, $mobile);
         @include adaptiveValue("height", 50px, 100px, $minWidth, $mobile);
         @include adaptiveValue("padding-top", 10px, 10px, $minWidth, $mobile);
@@ -289,7 +310,7 @@
 
         @media (min-width: $mobile) {
             top: 15%;
-            left: 25%;
+            @include adaptiveValue("left", 120px, 200px, $mobile, $desktop);
             @include adaptiveValue("width", 50px, 100px, $mobile, $desktop);
             @include adaptiveValue("height", 50px, 100px, $mobile, $desktop);
             @include adaptiveValue("padding-top", 10px, 10px, $mobile, $desktop);
