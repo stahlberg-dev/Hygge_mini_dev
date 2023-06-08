@@ -11,6 +11,8 @@ export function parallax(parallaxObjects) {
             image.style.transitionProperty = imageComputedStyle.transitionProperty + ', background-position-y';
             image.style.transitionDuration = imageComputedStyle.transitionDuration + `, ${parallaxObject.durationTime}ms`;
             image.style.transitionTimingFunction = imageComputedStyle.transitionTimingFunction + ', ease';
+            image.style.backgroundPositionY = image.offsetHeight * parallaxObject.imageStartPosition 
+                                              + image.getBoundingClientRect().top * parallaxObject.speedCoefficient + 'px';
     
             window.addEventListener("scroll", event => {
                 

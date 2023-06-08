@@ -1,14 +1,15 @@
 .title-screen {
     position: relative;
+    width: 100%;
     min-width: $minWidth;
     min-height: 100vh;
     overflow: hidden;
 
-    @media (min-aspect-ratio: 4/5) {
-        aspect-ratio: 5/7;
+    @media (min-aspect-ratio: 2/3) {
+        aspect-ratio: 1/2;
     }
 
-    @media (min-aspect-ratio: 4/5) and (min-width: $mobile) {
+    @media (min-aspect-ratio: 2/3) and (min-width: $mobile) {
         aspect-ratio: unset !important;
     }
 
@@ -21,62 +22,50 @@
         width: 100%;
         height: calc(100% - 50px);
         background-repeat: no-repeat;
-        background-position: center 70%;
+        background-position: center 100%;
         background-size: 130%;
         background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 25%,
                                                 rgba(0, 0, 0, 0.1) 50%, 
-                                                rgba(0, 0, 0, 0.45) 75%),
+                                                rgba(0, 0, 0, 0.15) 75%),
                           url("../img/title-screen/background-mobile.webp");
         
         @media (min-width: $smallMobile) {
-            background-position: center 70%;
             background-size: 100%;
         }
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("top", 50px, 60px, $smallMobile, $tablet);
-            @include adaptiveValue("left", -120px, 0px, $mobile, $desktop);
-            height: calc(100% - 50px);
-            background-position: 60% center;
-            background-size: auto 100%;
-            width: $maxContainerWidth;
-            background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.45) 30%, 
-                                                      rgba(0, 0, 0, 0.4) 40%, 
-                                                      rgba(0, 0, 0, 0.3) 50%, 
-                                                      rgba(0, 0, 0, 0.2) 60%, 
-                                                      rgba(0, 0, 0, 0.1) 70%),
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: 30% 60%;
+            background-size: cover;
+            background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.3) 30%, 
+                                                      rgba(0, 0, 0, 0.2) 40%, 
+                                                      rgba(0, 0, 0, 0.15) 50%, 
+                                                      rgba(0, 0, 0, 0.1) 60%, 
+                                                      rgba(0, 0, 0, 0.05) 70%),
                               url("../img/title-screen/background.webp");
         }
-
-        @media (min-width: $tablet) {
-            height: calc(100% - 60px);
-            background-position: center center;
-            background-size: auto 140%;
-        }
-    
-        @media (min-width: $desktop) {
-            width: 100%;
-        } 
     }
 
     &__container {
         position: relative;
         z-index: 1;
 
-        @media (min-aspect-ratio: 4/5) {
+        @media (min-aspect-ratio: 2/3) {
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
             height: 100%;
-    
-            @media (min-width: $mobile) {
-                position: relative;
-                top: 0;
-                left: 0;
-                transform: none;
-                height: auto;
-            }
+        }
+
+        @media (min-aspect-ratio: 2/3) and (min-width: $mobile) {
+            position: relative !important;
+            left: 0 !important;
+            transform: none !important;
+            height: auto !important;
         }
     }
 
@@ -87,7 +76,7 @@
         justify-content: center;
         min-height: 100vh;
         height: 100%;
-        @include adaptiveValue("padding-top", 85px, 150px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 135px, 200px, $minWidth, $mobile);
         @include adaptiveValue("padding-bottom", 20px, 50px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
@@ -95,12 +84,14 @@
             max-width: 48%;
             min-height: 0;
             margin: 0 0 0 auto;
-            padding-top: 35vh;
+            //padding-top: calc(35vh + 40px);
+            padding-top: 30vh;
             padding-bottom: 5vh;
         }
 
         @media (min-width: $tablet) {
-            padding-top: 30vh;
+            //padding-top: calc(30vh + 50px);
+            padding-top: 25vh;
         }
     }
 
@@ -134,10 +125,12 @@
         flex-flow: column nowrap;
         align-items: stretch;
         @include adaptiveValue("gap", 10px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 20px, 30px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
             @include adaptiveValue("gap", 10px, 15px, $mobile, $desktop);
-            @include adaptiveValue("margin-bottom", 40px, 60px, $mobile, $desktop);
+            //@include adaptiveValue("margin-bottom", 40px, 60px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 20px, 30px, $mobile, $desktop);
         }
     }
 
@@ -171,13 +164,96 @@
     &__advantage-text {
         flex: 1 1 auto;
         font-family: $TTNorms;
-        @include adaptiveValue("line-height", 16px, 34px, $minWidth, $mobile);
-        @include adaptiveValue("font-size", 12px, 26px, $minWidth, $mobile);
+        @include adaptiveValue("line-height", 18px, 36px, $minWidth, $mobile);
+        @include adaptiveValue("font-size", 14px, 28px, $minWidth, $mobile);
         font-weight: 400;
 
         @media (min-width: $mobile) {
             @include adaptiveValue("line-height", 18px, 28px, $mobile, $desktop);
             @include adaptiveValue("font-size", 16px, 24px, $mobile, $desktop);
+        }
+    }
+
+    &__promo {
+        position: relative;
+        @include adaptiveValue("margin-bottom", 30px, 40px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 30px, 40px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-round {
+        position: relative;
+        @include adaptiveValue("width", 100px, 150px, $minWidth, $mobile);
+        @include adaptiveValue("height", 100px, 150px, $minWidth, $mobile);
+        border-radius: 50%;
+        background: linear-gradient(180deg, #FF0019 0%, #AC1A28 100%);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 100px, 150px, $mobile, $desktop);
+            @include adaptiveValue("height", 100px, 150px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-round-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 32px, 50px, $minWidth, $mobile);
+        font-weight: 700;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 32px, 50px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-parallelogram {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) skewX(35deg);
+        z-index: -5;
+        @include adaptiveValue("width", 200px, 300px, $minWidth, $mobile);
+        @include adaptiveValue("height", 66px, 99px, $minWidth, $mobile);
+        background-color: #F6931D;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 200px, 300px, $mobile, $desktop);
+            @include adaptiveValue("height", 66px, 99px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-title {
+        position: absolute;
+        top: 50%;
+        left: 110%;
+        transform: translateY(-50%);
+        text-transform: uppercase;
+        line-height: 1.3;
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 19px, 30px, $minWidth, $mobile);
+        font-weight: 700;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 19px, 30px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-subtitle {
+        position: absolute;
+        bottom: 0;
+        left: 110%;
+        white-space: nowrap;
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 14px, 20px, $minWidth, $mobile);
+        font-weight: 400;
+        text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 14px, 20px, $mobile, $desktop);
         }
     }
 

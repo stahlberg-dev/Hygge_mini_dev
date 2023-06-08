@@ -113,86 +113,19 @@ body {
     transition: background-color 0.3s ease;
     -webkit-tap-highlight-color: transparent;
 
-    @media (any-hover: hover) {
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: var(--hy);
-            left: var(--hx);
-            height: 300%;
-            aspect-ratio: 1/1;
-            z-index: 1;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        &:hover {           
-
-            &::before {
-                opacity: 1;
-            }
-        }
-
-        &.button_clicked:hover::before {
-            opacity: 0;                
-        }
-    }
-
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: var(--y);
-        left: var(--x);
-        width: 0;
-        height: 0;
-        z-index: 2;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        transition: opacity 0.3s linear,
-                    height 0.3s linear 0.3s,
-                    width 0.3s linear 0.3s;
-    }
-
-    &.button_clicked::after {
-        opacity: 1;
-        width: calc(2.2 * var(--r));
-        height: calc(2.2 * var(--r));
-        transition: opacity 0.3s linear,
-                    height 0.3s linear,
-                    width 0.3s linear;
-    }
-
     &_color_primary {
         background-color: $primaryColor;
         color: $secondaryColor;
 
         @media (any-hover: hover) {
-
-            &::before {
-                background: radial-gradient(circle farthest-side at 50% 50%, 
-                                          #fd4e18 5%,
-                                            transparent);
-            }
     
             &:hover {           
                 background-color: #b63109;
             }
         }
 
-        &::after {
-            background: radial-gradient(circle farthest-side at 50% 50%, 
-                                        #fd4e18 15%,
-                                        rgba(158, 42, 7, 0.3) 40%, 
-                                        rgba(158, 42, 7, 0.6) 70%, 
-                                        rgba(158, 42, 7, 0.9) 90%, 
-                                        transparent);
+        &.button_clicked {
+            background-color: #b63109;
         }
     }
 
@@ -200,32 +133,20 @@ body {
         background-color: transparent;
         color: $primaryColor;
         border: 2px solid $primaryColor;
-        transition: background-color 0.3s ease, 
-                    color 0.3s ease, 
+        transition: color 0.3s ease, 
                     border-color 0.3s ease;
 
         @media (any-hover: hover) {
-
-            &::before {
-                background: radial-gradient(circle farthest-side at 50% 50%, 
-                                          #FFF 30%,
-                                            transparent);
-            }
     
             &:hover {           
-                background-color: rgba(210, 67, 24, 0.15);
-                color: #b63109;
-                border-color: #b63109;
+                color: rgba(210, 67, 24, 0.5);
+                border-color: rgba(210, 67, 24, 0.5);
             }
         }
 
-        &::after {
-            background: radial-gradient(circle farthest-side at 50% 50%, 
-                                        #FFF 15%,
-                                        rgba(210, 67, 24, 0.1) 40%, 
-                                        rgba(210, 67, 24, 0.15) 70%, 
-                                        rgba(210, 67, 24, 0.3) 90%, 
-                                        transparent);
+        &.button_clicked {
+            color: rgba(210, 67, 24, 0.5);
+            border-color: rgba(210, 67, 24, 0.5);
         }
     }
 
@@ -233,17 +154,10 @@ body {
         background-color: transparent;
         color: $secondaryColor;
         border: 2px solid $secondaryColor;
-        transition: background-color 0.3s ease, 
-                    color 0.3s ease, 
+        transition: color 0.3s ease, 
                     border-color 0.3s ease;
 
         @media (any-hover: hover) {
-
-            &::before {
-                background: radial-gradient(circle farthest-side at 50% 50%, 
-                                            rgba(255, 255, 255, 0.2) 5%,
-                                            transparent);
-            }
     
             &:hover {           
                 color: $primaryColor;
@@ -251,13 +165,9 @@ body {
             }
         }
 
-        &::after {
-            background: radial-gradient(circle farthest-side at 50% 50%, 
-                                       rgba(255, 255, 255, 0.5) 15%,
-                                       rgba(255, 255, 255, 0.4) 30%, 
-                                       rgba(255, 255, 255, 0.3) 60%, 
-                                       rgba(255, 255, 255, 0.2) 90%, 
-                                        transparent);
+        &.button_clicked {
+            color: $primaryColor;
+            border-color: $primaryColor;
         }
     }
 
@@ -593,77 +503,6 @@ body {
         }
     }
 }
-
-/* 
-.prices {
-    display: flex;
-    flex-flow: column-reverse nowrap;
-    justify-content: flex-start;
-    align-items: center;
-
-        @media (min-width: $smallMobile) {
-            flex-flow: row nowrap;
-            align-items: start;
-            @include adaptiveValue("gap", 0px, 5px, $smallMobile, $mobile);
-        }
-
-        @media (min-width: $mobile) {
-            gap: 20px;
-        }
-
-    &__price {
-        font-weight: 800;
-        color: $secondaryColor;
-        line-height: 32px;
-        font-size: 26px;
-
-        @media (min-width: $smallMobile) {
-            @include adaptiveValue("min-width", 135px, 200px, $smallMobile, $mobile);
-            @include adaptiveValue("line-height", 36px, 58px, $smallMobile, $mobile);
-            @include adaptiveValue("font-size", 30px, 48px, $smallMobile, $mobile);
-        }
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("min-width", 135px, 200px, $mobile, $tablet);
-            @include adaptiveValue("line-height", 36px, 58px, $mobile, $tablet);
-            @include adaptiveValue("font-size", 30px, 48px, $mobile, $tablet);
-        }
-    }
-
-    &__value {
-    }
-
-    &__currency {
-    }
-
-    &__old-price {
-        text-decoration: line-through;
-        font-weight: 200;
-        line-height: 20px;
-        font-size: 16px;
-
-        @media (min-width: $smallMobile) {
-            @include adaptiveValue("line-height", 22px, 30px, $smallMobile, $mobile);
-            @include adaptiveValue("font-size", 18px, 24px, $smallMobile, $mobile);
-        }
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("line-height", 26px, 30px, $mobile, $maxContainerWidth);
-            @include adaptiveValue("font-size", 22px, 24px, $mobile, $maxContainerWidth);
-        }
-
-        &_color_dark {
-            color: $thirdColor;
-        }
-
-        &_color_orange {
-            color: $primaryColor;
-        }
-    }
-
-    &__old-value {
-    }
-} */
 
 @import "sections/title-screen.scss";
 @import "sections/about.scss";

@@ -28,12 +28,12 @@
 
     &__title {
         flex: 0 0 auto;
-        @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
         @include adaptiveValue("font-size", 20px, 50px, $minWidth, $mobile);
         font-weight: 700;
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 5px, 10px, $mobile, $desktop);
             @include adaptiveValue("font-size", 24px, 32px, $mobile, $desktop);
         }
     }
@@ -51,10 +51,46 @@
     }
 
     &__form {
+        position: relative;
         flex: 0 0 auto;
 
         @media (min-width: $mobile) {
             max-width: 370px;
+        }
+    }
+
+    &__promo-label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include adaptiveValue("width", 60px, 120px, $minWidth, $mobile);
+        @include adaptiveValue("height", 60px, 120px, $minWidth, $mobile);
+
+        @media (min-width: $mobile) {
+            transform: translateY(-30%);
+            @include adaptiveValue("width", 55px, 85px, $mobile, $desktop);
+            @include adaptiveValue("height", 55px, 85px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-label-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__promo-label-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 20px, 36px, $minWidth, $mobile);
+        font-weight: 700;
+        color: $secondaryColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 18px, 28px, $mobile, $desktop);
         }
     }
 
@@ -76,13 +112,28 @@
     }
 
     &__price {
-        @include adaptiveValue("margin-bottom", 30px, 40px, $minWidth, $mobile);
+        //@include adaptiveValue("margin-bottom", 30px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 20px, 30px, $minWidth, $mobile);
         @include adaptiveValue("font-size", 32px, 54px, $minWidth, $mobile);
         color: $primaryColor;
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 30px, 50px, $mobile, $desktop);
+            //@include adaptiveValue("margin-bottom", 30px, 50px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 20px, 30px, $mobile, $desktop);
             @include adaptiveValue("font-size", 30px, 34px, $mobile, $desktop);
+        }
+    }
+
+    &__promo-text  {
+        @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        @include adaptiveValue("font-size", 14px, 20px, $minWidth, $mobile);
+        font-weight: 500;
+        color: #F6931D;
+
+        @media (min-width: $mobile) {
+            margin-bottom: 10px;
+            font-size: 16px;
         }
     }
 

@@ -2,7 +2,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    backdrop-filter: none;
+    backdrop-filter: blur(10px);
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
@@ -11,13 +11,10 @@
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: 200;
-    will-change: opacity;
-    transition: backdrop-filter 0.3s ease, 
-                opacity  0.3s ease;
+    transition: opacity 0.3s ease;
 
     &_opened {
         opacity: 1;
-        backdrop-filter: blur(10px);
         pointer-events: auto;
     }
 
@@ -48,7 +45,7 @@
         }
 
         .popup_opened & {
-            transform: none;
+            transform: scale(1, 1);
         }
     }
     
@@ -74,7 +71,7 @@
         left: 0;
         width: 100%;
         height: 11%;
-        background-color: $thirdColor;
+        background-color: $secondaryColor;
         transform: rotate(45deg);
         transition: all 0.3s ease;
 
@@ -85,144 +82,16 @@
         @media (any-hover: hover) {
             
             .popup__close:hover & {               
-                background-color: rgba(16, 16, 16, 0.6);
+                background-color: $primaryColor;
             }
+        }
+
+        .popup__close_clicked & {
+            background-color: $primaryColor;
         }
     }
 }
 
-.founder-popup {
-
-    &.popup_opened {
-        backdrop-filter: none;
-
-        @media (min-width: $mobile) {
-            backdrop-filter: blur(10px);
-        }
-    }
-
-    &__wrapper {
-        padding: 0;
-
-        @media (min-width: $mobile) {
-            padding: $containerPadding;
-        }
-    }
-
-    &__content.popup__content {
-        display: flex;
-        flex-flow: column nowrap;
-        @include adaptiveValue("gap", 10px, 20px, $minWidth, $mobile);
-        width: 100%;
-        min-height: 100vh;
-        padding: 0;
-
-        @media (min-width: $mobile) {
-            flex-flow: row nowrap;
-            gap: 0;
-            @include adaptiveValue("width", 600px, 1000px, $mobile, $desktop);
-            min-height: 0px;
-        }
-    }
-
-    &__close {
-        position: fixed;
-        top: 30px;
-        right: 30px;
-        width: 32px;
-        height: 32px;
-        z-index: 1;
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 130%;
-            height: 130%;
-            border-radius: 50%;
-            background-color: #DDD;
-        }
-
-        @media (min-width: $mobile) {
-            position: absolute;
-            top: -3px;
-            right: -50px;
-
-            &::before {
-                display: none;
-            }
-        }
-    }
-
-    &__image-wrapper {
-        position: relative;
-        width: 100%;
-        flex: 0 0 auto;
-        padding-bottom: 130%;
-
-        @media (min-width: $mobile) {
-            flex: 0 0 35%;
-            padding-bottom: 47%;
-        }
-    }
-
-    &__image {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    &__text {
-        padding: $containerPadding;
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("padding-top", $containerPadding, 50px, $mobile, $desktop);
-            @include adaptiveValue("padding-bottom", $containerPadding, 30px, $mobile, $desktop);
-            @include adaptiveValue("padding-right", $containerPadding, 30px, $mobile, $desktop);
-            @include adaptiveValue("padding-left", $containerPadding, 60px, $mobile, $desktop);
-        }
-    }
-
-    &__title {
-        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
-        @include adaptiveValue("font-size", 18px, 40px, $minWidth, $mobile);
-        font-weight: 700;
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
-            @include adaptiveValue("font-size", 22px, 32px, $mobile, $desktop);
-        }
-    }
-
-    &__paragraph {
-        @include adaptiveValue("margin-bottom", 20px, 50px, $minWidth, $mobile);
-        font-family: $TTNorms;
-        @include adaptiveValue("font-size", 14px, 32px, $minWidth, $mobile);
-        font-weight: 400;
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 15px, 20px, $mobile, $desktop);
-            @include adaptiveValue("font-size", 14px, 16px, $mobile, $desktop);
-        }
-    }
-
-    &__author {
-        @include adaptiveValue("font-size", 12px, 30px, $minWidth, $mobile);
-        font-weight: 700;
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("font-size", 12px, 14px, $mobile, $desktop);
-        }
-    }
-}
 .consultation-popup {
 
     &__wrapper {

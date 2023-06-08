@@ -13,10 +13,10 @@
     }
 
     &__title {
-        @include adaptiveValue("margin-bottom", 5px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 5px, 10px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 5px, 5px, $mobile, $desktop);
         }
     }
 
@@ -116,15 +116,15 @@
         align-items: flex-start;
         @include adaptiveValue("gap", 5px, 15px, $minWidth, $mobile);
         @include adaptiveValue("padding", 10px, 30px, $minWidth, $mobile);
-        @include adaptiveValue("padding-top", 15px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("padding-top", 10px, 30px, $minWidth, $mobile);
         background-color: $secondaryColor;
         font-weight: 400;
         color: $thirdColor;
 
         @media (min-width: $mobile) {
             @include adaptiveValue("gap", 5px, 10px, $mobile, $desktop);
-            @include adaptiveValue("padding", 15px, 25px, $mobile, $desktop);
-            @include adaptiveValue("padding-top", 20px, 30px, $mobile, $desktop);
+            @include adaptiveValue("padding", 15px, 30px, $mobile, $desktop);
+            @include adaptiveValue("padding-top", 25px, 45px, $mobile, $desktop);
         }
 
         &::after {
@@ -179,7 +179,6 @@
         font-weight: 300;
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 15px, 30px, $mobile, $desktop);
             @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
         }
     }
@@ -211,16 +210,6 @@
                 width: 8px;
                 height: 8px;
             }
-        }
-    }
-
-    &__conclusion {
-        font-family: $TTNorms;
-        @include adaptiveValue("font-size", 11px, 22px, $minWidth, $mobile);
-        font-weight: 500;
-
-        @media (min-width: $mobile) {
-            @include adaptiveValue("font-size", 14px, 16px, $mobile, $desktop);
         }
     }
 }

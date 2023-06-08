@@ -46,6 +46,32 @@
         position: relative;
         width: 100%;
         aspect-ratio: 1 / 1;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 64px;
+            height: 64px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+            background-image: url("../img/gallery/full-screen.svg");
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (any-hover: hover) {
+
+            &:hover::after {
+                opacity: 1;
+            }
+        }
     }
 
     &__thumb {
@@ -58,23 +84,46 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        cursor: url("../img/gallery/full-screen.svg") 32 32, zoom-in;
+        cursor: pointer;
         transition: filter 0.5s ease;
 
         @media (any-hover: hover) {
 
-            &:hover {
+            .gallery__image:hover & {
                 filter: brightness(0.5);
             }
         }
     }
 }
 
-.baguetteBox-button {
+.lg-sub-html {
+    display: none;
+}
+
+.lg-content {
+    top: 0 !important;
+}
+
+.lg-object.lg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lg-prev, .lg-next, .lg-close.lg-icon {
+    position: absolute;
+    @include adaptiveValue("width", 30px, 64px, $minWidth, $mobile);
+    @include adaptiveValue("height", 30px, 64px, $minWidth, $mobile);
     border-radius: 50%;
+    padding: 0;
     background-color: rgba(210, 67, 24, 0.4);
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+    @media (min-width: $mobile) {
+        width: 48px;
+        height: 48px;
+    }
 
     @media(any-hover: hover) {
 
@@ -82,75 +131,37 @@
             background-color: rgba(210, 67, 24, 0.7);
         }
     }
+}
 
-    &#previous-button,
-    &#next-button,
-    &#close-button {
-        @include adaptiveValue("width", 30px, 64px, $minWidth, $mobile);
-        @include adaptiveValue("height", 30px, 64px, $minWidth, $mobile);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 50% 50%;
+.lg-close.lg-icon {
+    top: 20px;
+    right: 20px;
+}
 
-        @media (min-width: $mobile) {
-            width: 48px;
-            height: 48px;
-        }
+.lg-prev::after,
+.lg-next::before,
+.lg-close.lg-icon::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
 
-        &:focus {
-            background-color: rgba(210, 67, 24, 0.4);
+.lg-prev::after {
+    background-image: url("../img/gallery/arrow-prev.svg");
+}
 
-            @media(any-hover: hover) {
+.lg-next::before {
+    background-image: url("../img/gallery/arrow-next.svg");
+}
 
-                &:hover {
-                    background-color: rgba(210, 67, 24, 0.7);
-                }
-            }
-        }
-
-        svg {
-            display: none;
-        }
-    }
-
-    &#previous-button {
-        background-image: url("../img/gallery/arrow-prev.svg");
-    }
-
-    &#next-button {
-        background-image: url("../img/gallery/arrow-next.svg");
-    }
-
-    &#close-button {
-
-        @media(any-hover: none) {
-            background-color: rgba(210, 67, 24, 0.7);
-
-            &:focus {
-                background-color: rgba(210, 67, 24, 0.7);
-            }
-        }
-
-
-        &::before,
-        &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 15%;
-            top: 48%;
-            width: 70%;
-            height: 4%;
-            background-color: $secondaryColor;
-        }
-
-        &::before {
-            transform: rotate(45deg);
-        }
-
-        &::after {
-            transform: rotate(-45deg);
-        }
-
-    }
+.lg-close.lg-icon::after {
+    background-image: url("../img/gallery/close.svg");
 }

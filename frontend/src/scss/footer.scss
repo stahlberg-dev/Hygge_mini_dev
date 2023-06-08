@@ -18,7 +18,7 @@
             grid-template-rows: repeat(5, auto);
             justify-content: space-between;
             align-items: start;
-            @include adaptiveValue("column-gap", 10px, 70px, $mobile, $desktop);
+            @include adaptiveValue("column-gap", 15px, 70px, $mobile, $desktop);
             width: 100%;
             padding: 40px 0 30px;
         }
@@ -62,7 +62,7 @@
             justify-content: space-between;
             justify-items: start;
             align-items: start;
-            @include adaptiveValue("column-gap", 15px, 80px, $mobile, $desktop);
+            @include adaptiveValue("column-gap", 10px, 80px, $mobile, $desktop);
             grid-row: 1/5;
             grid-column: 2;
             width: 100%;
@@ -83,6 +83,7 @@
     }
 
     &__menu-link {
+        display: inline-block;
         @include adaptiveValue("font-size", 12px, 16px, $mobile, $desktop);
         font-weight: 500;
         cursor: pointer;
@@ -180,6 +181,8 @@
         align-items: center;
         @include adaptiveValue("gap", 16px, 35px, $minWidth, $mobile);
         grid-row: 2;
+        grid-column: 3;
+        align-self: center;
 
         @media (min-width: $mobile) {
             justify-content: flex-start;
@@ -202,6 +205,14 @@
             @include adaptiveValue("flex-basis", 20px, 24px, $mobile, $desktop);
             @include adaptiveValue("height", 20px, 24px, $mobile, $desktop);
         }
+
+        .footer__marketplaces & {
+            display: none;
+
+            @media (min-width: $mobile) {
+                display: block;
+            }
+        }
     }
 
     &__social-icon {
@@ -220,7 +231,7 @@
 
         @media (min-width: $mobile) {
             justify-content: flex-start;
-            grid-row: 4;
+            grid-row: 3;
             grid-column: 3;
             @include adaptiveValue("gap", 10px, 16px, $mobile, $desktop);
             @include adaptiveValue("max-width", 165px, 200px, $mobile, $desktop);
@@ -242,7 +253,7 @@
             @include adaptiveValue("flex-basis", 55px, 110px, $minWidth, $mobile);
 
             @media (min-width: $mobile) {
-                @include adaptiveValue("flex-basis", 46px, 52px, $mobile, $desktop);
+                @include adaptiveValue("flex-basis", 55px, 60px, $mobile, $desktop);
             }
         }
 
@@ -250,23 +261,7 @@
             @include adaptiveValue("flex-basis", 25px, 50px, $minWidth, $mobile);
 
             @media (min-width: $mobile) {
-                @include adaptiveValue("flex-basis", 22px, 24px, $mobile, $desktop);
-            }
-        }
-
-        &_name_market {
-            @include adaptiveValue("flex-basis", 65px, 130px, $minWidth, $mobile);
-
-            @media (min-width: $mobile) {
-                @include adaptiveValue("flex-basis", 52px, 60px, $mobile, $desktop);
-            }
-        }
-
-        &_name_kazan {
-            @include adaptiveValue("flex-basis", 15px, 30px, $minWidth, $mobile);
-
-            @media (min-width: $mobile) {
-                @include adaptiveValue("flex-basis", 12px, 14px, $mobile, $desktop);
+                @include adaptiveValue("flex-basis", 26px, 30px, $mobile, $desktop);
             }
         }
     }

@@ -40,9 +40,10 @@ export class elementScrollObserver {
         this.elementClassName = config.elementClassName;
         this.intersectingClassName = config.intersectingClassName;
         this.lockedElementClassName = config.lockedElementClassName;
+        this.headerClassName = config.headerClassName;
     }
 
-    onScroll(elements, intersectingClass, lockedElementClass) {
+    onScroll(elements, intersectingClass, lockedElementClass, headerHeight) {
 
         const callback = function(entries, observer) {
 
@@ -61,7 +62,8 @@ export class elementScrollObserver {
         };
 
         const options = {
-            threshold: [0.5], 
+            rootMargin: `-${headerHeight}px 0px 0px 0px`,
+            threshold: [0.1], 
         };
 
         const elementObserver = new IntersectionObserver(callback, options);
@@ -77,8 +79,9 @@ export class elementScrollObserver {
         const elements = document.querySelectorAll(this.elementClassName);
         const intersectingClass = this.intersectingClassName.slice(1);
         const lockedElementClass = this.lockedElementClassName.slice(1);
+        const headerHeight = document.querySelector(this.headerClassName)?.offsetHeight ?? 0;
 
-        this.onScroll(elements, intersectingClass, lockedElementClass);
+        this.onScroll(elements, intersectingClass, lockedElementClass, headerHeight);
 
     }
 }

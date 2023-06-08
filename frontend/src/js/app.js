@@ -1,12 +1,11 @@
-import {fixBitrixButton} from "./modules/functions.js";
+import {fixBitrixButton, setPromoMonth} from "./modules/functions.js";
 import {scrollLocker} from "./modules/scroll-locker.js";
 import * as sliders from "./modules/sliders.js";
-import {baguetteBoxGallery} from "./modules/baguettebox-gallery.js";
+import {gallery} from "./modules/gallery.js";
 import * as forms from "./modules/forms.js";
 import {headerScrollObserver, elementScrollObserver} from "./modules/scroll-observer.js";
 import {burger} from "./modules/burger.js";
 import {popupsMaker} from "./modules/popups-maker.js";
-import {spoilers} from "./modules/spoilers.js";
 import {labelLinksMaker} from "./modules/label-links.js";
 import {phoneMask} from "./modules/masks.js";
 import {clickScroller} from "./modules/click-scroller.js";
@@ -20,7 +19,8 @@ import {temporaryElementMaker} from "./modules/temporary-element-maker.js";
 
 new scrollLocker({
     lockingElementClassName: '.observing', 
-    lockedClassName: '.observing_locked', 
+    lockedClassName: '.observing_locked',
+    intersectingClassName: '.observing_shown',
     unlockDelay: 1000,
 }).init();
 
@@ -33,6 +33,18 @@ fixBitrixButton(
     '.footer',
     '.lock-padding'
 );
+
+//-------------------------------------------------------------------------------------------
+
+//----- Set promo month ---------------------------------------------------------------------
+
+setPromoMonth('.promo-season', '.promo-month');
+
+//-------------------------------------------------------------------------------------------
+
+// ----- BaguetteBox gallery() --------------------------------------------------------------
+
+gallery();
 
 //-------------------------------------------------------------------------------------------
 
@@ -51,6 +63,7 @@ new elementScrollObserver({
     elementClassName: '.observing',
     intersectingClassName: '.observing_shown',
     lockedElementClassName: '.observing_locked',
+    headerClassName: '.header__wrapper',
 }).init();
 
 //-------------------------------------------------------------------------------------------
@@ -60,11 +73,24 @@ new elementScrollObserver({
 new burger({
     buttonClassName: '.burger',
     activeButtonClassName: '.burger_active',
-    menuClassName: '.menu__body',
-    activeMenuClassName: '.menu__body_active',
+    menuClassName: '.menu',
+    activeMenuClassName: '.menu_active',
     menuLinkClassName: '.menu__link',
     lockPaddingElementClassName: '.lock-padding',
-    showHideTime: 600,
+    showHideTime: 300,
+}).init();
+
+//-------------------------------------------------------------------------------------------
+
+// ----- Header submenus --------------------------------------------------------------------
+
+new labelLinksMaker({
+    linkAttributeName: 'data-sublink',
+    activeLinkClassName: '.header__left-menu-item_submenu-active',
+    labelAttributeName: 'data-submenu',
+    activeLabelClassName: '.header__left-submenu-list_active',
+    onMouseLeaveHide: true,
+    showHideTime: 300,
 }).init();
 
 //-------------------------------------------------------------------------------------------
@@ -140,6 +166,17 @@ const safetyLabel = new labelLinksMaker({
 
 safetyLabel.init();
 
+const accessoriesLabel = new labelLinksMaker({
+    linkAttributeName: 'data-question-link',
+    activeLinkClassName: '.accessories__question_active',
+    labelAttributeName: 'data-question-label',
+    activeLabelClassName: '.accessories__question-label_active',
+    onMouseLeaveHide: true,
+    showHideTime: 300,
+});
+
+accessoriesLabel.init();
+
 //-------------------------------------------------------------------------------------------
 
 //----- Click animation ---------------------------------------------------------------------
@@ -162,10 +199,6 @@ new clickAnimator([
         clickedElementClassName: '.slider-button_clicked',
     },
     {
-        clickableElementClassName: '.about__popup-link',
-        clickedElementClassName: '.about__popup-link_clicked',
-    },
-    {
         clickableElementClassName: '.safety__paragraph-link',
         clickedElementClassName: '.safety__paragraph-link_clicked',
     },
@@ -183,7 +216,10 @@ new clickAnimator([
         clickableElementClassName: '.button',
         clickedElementClassName: '.button_clicked',
         clickCoordinates: true,
-        duration: 300,
+    },
+    {
+        clickableElementClassName: '.popup__close',
+        clickedElementClassName: '.popup__close_clicked',
     },
 ]).init();
 
@@ -201,18 +237,12 @@ sliders.swiperConstructiveSlider();
 
 //-------------------------------------------------------------------------------------------
 
-// ----- BaguetteBox gallery() --------------------------------------------------------------
-
-baguetteBoxGallery();
-
-//-------------------------------------------------------------------------------------------
-
 // ----- Parallax effect --------------------------------------------------------------------
 
 parallax([
     {
         imageClassName: '.complectation__background',
-        imageStartPosition: 0.35,
+        imageStartPosition: 0.3,
         speedCoefficient: 0.2,
         durationTime: 1000,
     },
@@ -230,6 +260,7 @@ const questionSubAccordion = new accordion({
     sectionContentWrapperClassName: '.accordion__subsection-content',
     sectionContentClassName: '.accordion__subsection-text',
     showHideTime: 500,
+    onLoadActiveSectionNums: [0],
 });
 
 questionSubAccordion.init();
@@ -242,7 +273,7 @@ const questionAccordion = new accordion({
     sectionContentWrapperClassName: '.accordion__section-list-wrapper',
     sectionContentClassName: '.accordion__section-list',
     showHideTime: 1000,
-    onLoadActiveSectionNums: [0],
+    onLoadActiveSectionNums: [0, 1],
     subAccordions: [questionSubAccordion],
 });
 

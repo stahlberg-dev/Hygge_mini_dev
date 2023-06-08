@@ -6,12 +6,12 @@
 }
 .order-success {
     height: 100%;
-    @include adaptiveValue("padding-top", 80px, 130px, $minWidth, $mobile);
+    @include adaptiveValue("padding-top", 130px, 180px, $minWidth, $mobile);
     @include adaptiveValue("padding-bottom", 30px, 50px, $minWidth, $mobile);
     color: $thirdColor;
 
     @media (min-width: $mobile) {
-        @include adaptiveValue("padding-top", 130px, 170px, $mobile, $desktop);
+        @include adaptiveValue("padding-top", 170px, 220px, $mobile, $desktop);
         @include adaptiveValue("padding-bottom", 50px, 70px, $mobile, $desktop);
     }
 

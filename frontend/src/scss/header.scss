@@ -8,7 +8,6 @@
         top: 0;
         left: 0;
         z-index: 100;
-        background-color: $primaryColor;
     }
 
     &__container {
@@ -55,12 +54,132 @@
         height: 100%;
     }
 
-    &__menu {
+    &__left-menu {
         flex: 1 1 auto;
 
-        @media (min-width: $tablet) {
-            @include adaptiveValue("margin-right", 30px, 60px, $tablet, $desktop);
+        @media (min-width: $desktop) {
+            margin-right: 110px;
         }
+    }
+
+    &__left-menu-list {
+        display: none;
+
+        @media (min-width: $desktop) {
+            display: flex; 
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    
+    &__left-menu-item {
+        position: relative;
+        z-index: 5;
+        height: 16px;
+    }
+
+    &__left-submenu {
+        display: none;
+
+        @media (min-width: $desktop) {
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(calc(-50% - 2px));
+            left: -15px;
+            width: calc(100% + 30px);
+            height: 100px;
+            pointer-events: none;
+            transition: height 0.3s ease;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                background-color: $primaryColor;
+            }
+
+            .header__left-menu-item_submenu-active & {
+                pointer-events: auto;
+            }
+
+            .header_scroll & {
+                height: 60px;
+            }
+        }
+    }
+
+    &__left-submenu-list  {
+        display: flex; 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform: translateY(-100%);
+        flex-flow: column nowrap;
+        gap: 15px;
+        width: 100%;
+        padding: 25px 15px 20px;
+        background-color: $primaryColor;
+        transition: transform 0.3s ease;
+
+        &_active {
+            transform: translateY(0%);
+        }
+    }
+
+    &__left-submenu-item {
+
+    }
+
+    &__left-menu-link {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        z-index: 5;
+        text-transform: uppercase;
+        white-space: nowrap;
+        line-height: 1;
+        font-size: 16px;
+        font-weight: 400;
+        transition: opacity 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        &_current {
+            border-bottom: 1px solid $secondaryColor;
+            pointer-events: none;
+        }
+    }
+
+    &__left-menu-link-text {
+
+    }
+
+    &__left-menu-link-icon {
+        width: 15px;
+        height: 15px;
+        transform: translateY(-2px) rotate(90deg);
+        stroke: #FFF;
+        stroke-width: 2;
+        transition: transform 0.3s ease;
+
+        .header__left-menu-item_submenu-active & {
+            transform: translateY(-2px) rotate(-90deg);
+        }
+    }
+
+    &__menu {
     }
 
     &__phone {
@@ -72,12 +191,10 @@
             align-items: flex-end;
             gap: 10px;
             flex: 0 0 auto;
+            z-index: 5;
             margin-right: 40px;
             color: $secondaryColor;
-        }
-
-        @media (min-width: $tablet) {
-            margin-right: 0;
+            fill: $secondaryColor;
         }
     }
 
@@ -85,27 +202,18 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        transition: opacity 0.3s ease;
-
-        @media (any-hover: hover) {
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
     }
 
     &__phone-icon {
         width: 16px;
         height: 16px;
-        fill: $secondaryColor;
     }
 
     &__phone-number {
         line-height: 1;
         font-size: 16px;
         font-weight: 700;
-        transform: translateY(2px);
+        transform: translateY(1px);
     }
 
     &__phone-text {
@@ -121,115 +229,291 @@
 
     &__link {
         position: relative;
+        cursor: pointer;
+        transition: color 0.3s ease, fill 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            &:hover {
+                color: $primaryColor;
+                fill: $primaryColor;
+            }
+        }
+
+        @media (any-hover: none) {
+
+            &.header__link_clicked {
+                color: $primaryColor;
+                fill: $primaryColor;
+            }
+        }
+
+        &_desktop {
+            transition: opacity 0.3s ease;
+
+            @media (any-hover: hover) {
+
+                &:hover {
+                    opacity: 0.7;
+                    color: $secondaryColor;
+                    fill: $secondaryColor;
+                }
+            }
+
+            @media (any-hover: none) {
+
+                &.header__link_clicked {
+                    color: $secondaryColor;
+                    fill: $secondaryColor;
+                }
+            }
+        }
+
         @include mobileClickAnimation;
     }
 }
 
-@include burger(2.5px);
+.burger {
+    position: relative;
+    display: grid;
+    grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+    gap: 2px;
+    cursor: pointer;
 
-@media (min-width: $smallMobile) {
-    @include burger(calc(2px + 0.15vw));
-}
+    @include mobileClickAnimation($secondaryColor, 10px, 10px);
 
-@media (min-width: $mobile) {
-    @include burger(3px);
+    &__left-stripe,
+    &__right-stripe {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0, 0);
+        z-index: 5;
+        width: 30px;
+        height: 4px;
+        border-radius: 1px;
+        background-color: $primaryColor;
+        transition: transform 0.3s ease;
+
+        @media (any-hover: hover) {
+
+            .burger:hover & {
+                background-color: $secondaryColor;
+            }
+        }
+    }
+
+    &_active .burger__left-stripe {
+        transform: translate(-50%, -50%) scale(1, 1) rotate(405deg);
+        transition: transform 0.3s ease 0.3s,
+                    background-color 0.3s ease;
+    }
+
+    &_active .burger__right-stripe {
+        transform: translate(-50%, -50%) scale(1, 1) rotate(315deg);
+        transition: transform 0.3s ease 0.3s, 
+                    background-color 0.3s ease;
+    }
+
+    &__box {
+        display: block;
+        z-index: 5;
+        width: 6px;
+        height: 6px;
+        border-radius: 1px;
+        background-color: $secondaryColor;
+        transition: background-color 0.3s ease,
+                    opacity 0.3s ease 0.3s,
+                    transform 0.3s ease 0.2s;
+
+        @media (any-hover: hover) {
+
+            .burger:hover & {
+                background-color: $primaryColor;
+            }
+        }
+
+        .burger_active & {
+            opacity: 0;
+            transition: background-color 0.3s ease,
+                        opacity 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        &_highlighted {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: $primaryColor;
+
+            @media (any-hover: hover) {
+
+                .burger:hover & {
+                    background-color: $secondaryColor;
+                }
+            }
+
+            .burger_active & {
+                opacity: 1;
+                transform: translate(8px, 8px) scale(0.3, 0.3);
+            }
+        }
+
+    }
 }
 
 .menu {
 
     &__body {
         display: flex;
-        flex-flow: row nowrap;
-        @include adaptiveValue("gap", 20px, 100px, $minWidth, $tablet);
         position: fixed;
-        top: 0;
-        left: calc(100% + $minWidth);
-        right: calc(-100% - $minWidth);
+        top: -100%;
+        left: 0;
+        flex-flow: row nowrap;
+        @include adaptiveValue("gap", 30px, 80px, $minWidth, $mobile);
         min-width: $minWidth;
         width: 100%;
         height: 100%;
-        padding: 75px $containerPadding 30px;
-        @include adaptiveValue("padding-top", 80px, 140px, $smallMobile, $tablet);
+        padding-top: 50px;
         overflow: auto;
-        background-color: $primaryColor;
-        transition: right 0.6s ease,
-                    left 0.6s ease;
+        background-color: $thirdColor;
+        transition: top 0.3s ease;
 
-        @media (min-width: $tablet) {
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("padding-top", 60px, 100px, $smallMobile, $tablet);
+        }
+        
+        @media (min-width: $mobile) {
             display: block;
-            position: static;
-            padding: 0;
-            overflow: visible;
             background-color: transparent;
         }
 
         &::before {
             content: '';
-            display: block;
-            position: fixed;
-            top: 0;
-            left: calc(100% + $minWidth);
-            right: calc(-100% - $minWidth);
-            width: 100%;
-            height: 50px;
-            background: $primaryColor;
-            z-index: 1;
-            transition: right 0.6s ease,
-                        left 0.6s ease;
+            display: none;
 
-            @media (min-width: $smallMobile) {
-                @include adaptiveValue("height", 60px, 100px, $smallMobile, $tablet);
-            }
-    
-            .header_scroll & {
-    
-                @media (min-width: $smallMobile) {
-                    @include adaptiveValue("height", 50px, 60px, $smallMobile, $tablet);
-                }
+            @media (min-width: $mobile) {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                width: 100%;
+                height: 100%;
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
             }
         }
 
         .header_scroll & {
-            @include adaptiveValue("padding-top", 80px, 100px, $smallMobile, $tablet);
-
-            @media (min-width: $tablet) {
-                padding: 0;
+            
+            @media (min-width: $smallMobile) {
+                @include adaptiveValue("padding-top", 50px, 60px, $smallMobile, $tablet);
             }
         }
 
-        &_active {
-            left: 0;
-            right: 0;
+        .menu_active & {
+            top: 0;
 
             &::before {
-                left: 0;
-                right: 0;
+                opacity: 1;
             }
         }
     }
 
+    &__top {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        min-width: $minWidth;
+        height: 50px;
+        background-color: $primaryColor;
+        pointer-events: none;
+        transition: height 0.3s ease,
+                    background-color 0.3s ease 0.3s;
+
+        @media (min-width: $smallMobile) {
+            @include adaptiveValue("height", 60px, 100px, $smallMobile, $tablet);
+        }
+
+        .header_scroll & {
+
+            @media (min-width: $smallMobile) {
+                @include adaptiveValue("height", 50px, 60px, $smallMobile, $tablet);
+            }
+        }
+
+        .menu_active & {
+            background-color: $thirdColor;
+            transition: background-color 0s ease;
+
+            @media (min-width: $mobile) {
+                background-color: $primaryColor;
+            }
+        }
+    }
+
+    &__top-right {
+        margin-left: auto;
+        width: 53px;
+        height: 100%;
+        background-color: $thirdColor;
+        
+        @media (min-width: $mobile) {
+            width: 280px;
+        }
+
+        @media (min-width: calc($desktop + $containerPadding)) {
+            width: calc(280px + 50% - 600px);
+        }
+    }
+
     &__list {
-        @media (min-width: $tablet) {
-            display: flex; 
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: center;
+        padding-left: $containerPadding;
+        @include adaptiveValue("padding-top", 20px, 40px, $minWidth, $mobile);
+        
+        @media (min-width: $mobile) {
+            margin-left: auto;
+            width: 280px;
+            padding: 20px $containerPadding 5px;
+            background-color: $thirdColor;
+        }
+
+        @media (min-width: calc($desktop + $containerPadding)) {
+            width: calc(280px + 50% - 600px);
+            padding-right: calc($containerPadding + 50% - 600px);
         }
     }
 
     &__item {
         position: relative;
-        @include adaptiveValue("margin-bottom", 20px, 40px, $minWidth, $tablet);
+        @include adaptiveValue("margin-bottom", 20px, 30px, $minWidth, $mobile);
 
-        @media (min-width: $tablet) {
-            margin: 0;
-            @include adaptiveValue("height", 14px, 16px, $tablet, $desktop);
+        @media (min-width: $mobile) {
+            margin-bottom: 15px;
+            text-align: right;
         }
 
         &_mobile {
 
-            @media (min-width: $tablet) {
+            @media (min-width: $desktop) {
                 display: none;
+            }
+        }
+
+        &_divider {
+            width: 100%;
+            border-bottom: 1px solid rgb(107, 107, 107);
+            @include adaptiveValue("margin-bottom", 40px, 60px, $minWidth, $mobile);
+
+            @media (min-width: $mobile) {
+                margin-bottom: 30px;
             }
         }
     }
@@ -238,41 +522,25 @@
         display: inline-block;
         white-space: nowrap;
         line-height: 1;
-        @include adaptiveValue("font-size", 14px, 36px, $minWidth, $tablet);
+        @include adaptiveValue("font-size", 14px, 28px, $minWidth, $mobile);
         font-weight: 400;
-        transition: opacity 0.3s ease;
 
-        @media (min-width: $tablet) {
-            @include adaptiveValue("font-size", 14px, 16px, $tablet, $desktop);
+        @media (min-width: $mobile) {
+            font-size: 16px;
         }
 
-        @media (any-hover: hover) {
-
-            &:hover {
-                opacity: 0.7;
-            }
-        } 
+        &_current {
+            border-bottom: 1px solid $primaryColor;
+            color: $primaryColor;
+            pointer-events: none;
+        }
     }
 
     &__right-side {
+        @include adaptiveValue("padding-top", 20px, 40px, $minWidth, $mobile);
 
-        @media (min-width: $tablet) {
+        @media (min-width: $mobile) {
             display: none;
-        }
-    }
-
-    &__registration {
-        @include adaptiveValue("margin-bottom", 30px, 50px, $minWidth, $tablet);
-
-        &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: $secondaryColor;
         }
     }
 
@@ -281,40 +549,32 @@
         flex-flow: column nowrap;
         align-items: flex-start;
         @include adaptiveValue("gap", 10px, 20px, $minWidth, $tablet);
-        @include adaptiveValue("margin-bottom", 35px, 57px, $minWidth, $tablet);
-        color: $secondaryColor; 
+        @include adaptiveValue("margin-bottom", 20px, 50px, $minWidth, $tablet);
+        color: $secondaryColor;
     }
-
+    
     &__phone-link {
         display: flex;
         align-items: center;
         @include adaptiveValue("gap", 5px, 10px, $minWidth, $tablet);
-        transition: opacity 0.3s ease;
-
-        @media (any-hover: hover) {
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+        fill: $secondaryColor; 
     }
 
     &__phone-icon {
         @include adaptiveValue("width", 16px, 36px, $minWidth, $tablet);
         @include adaptiveValue("height", 16px, 36px, $minWidth, $tablet);
-        fill: $secondaryColor;
     }
 
     &__phone-number {
         transform: translateY(5%);
         line-height: 1;
-        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $tablet);
+        @include adaptiveValue("font-size", 14px, 36px, $minWidth, $tablet);
         font-weight: 700;
     }
 
     &__phone-text {
         line-height: 1;
-        @include adaptiveValue("font-size", 14px, 32px, $minWidth, $tablet);
+        @include adaptiveValue("font-size", 12px, 32px, $minWidth, $tablet);
         font-weight: 300;
     }
 
@@ -322,26 +582,19 @@
         display: flex;
         align-items: center;
         @include adaptiveValue("gap", 5px, 10px, $minWidth, $tablet);
-        transition: opacity 0.3s ease;
-
-        @media (any-hover: hover) {
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+        color: $secondaryColor;
+        fill: $secondaryColor;
     }
 
     &__email-icon {
         @include adaptiveValue("width", 16px, 36px, $minWidth, $tablet);
         @include adaptiveValue("height", 16px, 36px, $minWidth, $tablet);
-        fill: $secondaryColor;
     }
 
     &__email-adress {
         transform: translateY(5%);
         line-height: 1;
-        @include adaptiveValue("font-size", 16px, 36px, $minWidth, $tablet);
+        @include adaptiveValue("font-size", 14px, 36px, $minWidth, $tablet);
         font-weight: 500;
     }
 }

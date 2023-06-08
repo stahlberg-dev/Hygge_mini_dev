@@ -3,6 +3,7 @@ export class scrollLocker {
     constructor(config) {
         this.lockingElementClassName = config.lockingElementClassName;
         this.lockedClassName = config.lockedClassName;
+        this.intersectingClassName = config.intersectingClassName;
         this.unlockDelay = config.unlockDelay;
     }
 
@@ -11,6 +12,7 @@ export class scrollLocker {
         {
             lockingElementClassName, 
             lockedClassName, 
+            intersectingClassName,
             unlockDelay, 
         }
     ) {
@@ -29,6 +31,16 @@ export class scrollLocker {
     
                 setTimeout(() => {
                     lockingElement.classList.remove( lockedClassName.slice(1) );
+
+                    const topCoordinate = lockingElement.getBoundingClientRect().top;
+
+                    if ((topCoordinate >= anchorElement.getBoundingClientRect().bottom) 
+                        && (topCoordinate < document.documentElement.clientHeight - lockingElement.offsetHeight * 0.1)) {
+
+                        lockingElement.classList.add( intersectingClassName.slice(1) );
+
+                    }
+
                 }, unlockDelay);
     
             }

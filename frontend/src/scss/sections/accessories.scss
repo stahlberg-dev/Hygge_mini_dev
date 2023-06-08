@@ -36,10 +36,10 @@
     }
 
     &__title {
-        @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 30px, 20px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 10px, 10px, $mobile, $desktop);
         }
     }
 
@@ -77,21 +77,34 @@
         display: flex;
         position: relative;
         align-items: center;
-        @include adaptiveValue("margin-top", 50px, 80px, $minWidth, $mobile);
+        @include adaptiveValue("margin-top", 20px, 50px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-top", 60px, 120px, $mobile, $desktop)
+            @include adaptiveValue("margin-top", 30px, 60px, $mobile, $desktop)
+        }
+
+        &_knee {
+            @include adaptiveValue("margin-top", 120px, 195px, $minWidth, $mobile);
+
+            @media (min-width: $mobile) {
+                @include adaptiveValue("margin-top", 150px, 170px, $mobile, $desktop)
+            }
         }
     }
 
     &__component-text {
-        flex: 0 0 60%;
-        @include adaptiveValue("padding", 5px, 25px, $minWidth, $mobile);
+        position: relative;
+        flex-grow: 0;
+        flex-shrink: 0;
+        @include adaptiveValue("flex-basis", 170px, 360px, $minWidth, $mobile);
+        @include adaptiveValue("padding", 10px, 25px, $minWidth, $mobile);
         background-color: $secondaryColor;
 
         @media (min-width: $mobile) {
-            flex: 0 0 60%;
-            @include adaptiveValue("padding", 5px, 20px, $mobile, $desktop)
+            flex-grow: 0;
+            flex-shrink: 0;
+            @include adaptiveValue("flex-basis", 180px, 250px, $mobile, $desktop);
+            @include adaptiveValue("padding", 10px, 20px, $mobile, $desktop);
         }
     }
 
@@ -115,6 +128,87 @@
 
         @media (min-width: $mobile) {
             @include adaptiveValue("font-size", 14px, 18px, $mobile, $desktop);
+        }
+    }
+
+    &__question-wrapper {
+        display: inline-block;
+        @include adaptiveValue("height", 14px, 26px, $minWidth, $mobile);
+        vertical-align:baseline;
+        -webkit-tap-highlight-color: transparent;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("height", 14px, 18px, $mobile, $desktop);
+        }
+    }
+
+    &__question {
+        display: inline-block;
+        vertical-align: middle;
+        @include adaptiveValue("width", 10px, 12px, $minWidth, $mobile);
+        cursor: pointer;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("width", 10px, 12px, $mobile, $desktop);
+        }
+    }
+
+    &__question-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(0, 0);
+        z-index: 1;
+        width: 100%;
+        @include adaptiveValue("padding", 10px, 25px, $minWidth, $mobile);
+        background-color: $secondaryColor;
+        opacity: 0;
+        transition: opacity 0.3s ease,
+                    transform 0.3s ease;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("padding", 10px, 20px, $mobile, $desktop)
+        }
+
+        @media (any-hover: none) {
+            pointer-events: none;
+        }
+
+        &_active {
+            opacity: 1;
+            transform: scale(1, 1);
+        }
+    }
+
+    &__question-label-title {
+        @include adaptiveValue("margin-bottom", 5px, 15px, $minWidth, $mobile);
+        text-transform: uppercase;
+        @include adaptiveValue("font-size", 14px, 26px, $minWidth, $mobile);
+        font-weight: 700;
+        color: $primaryColor;
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 5px, 10px, $mobile, $desktop);
+            @include adaptiveValue("font-size", 14px, 18px, $mobile, $desktop);
+        }
+    }
+
+    &__question-label-description {
+        @include adaptiveValue("font-size", 12px, 20px, $minWidth, $mobile);
+        font-family: $TTNorms;
+        font-weight: 500;
+        color: $thirdColor;
+
+        &:not(:last-child) {
+            @include adaptiveValue("margin-bottom", 10px, 20px, $minWidth, $mobile)
+        }
+
+        @media (min-width: $mobile) {
+            @include adaptiveValue("font-size", 12px, 14px, $mobile, $desktop);
+
+            &:not(:last-child) {
+                @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop)
+            }
         }
     }
 
@@ -195,9 +289,18 @@
             }
         }
 
+        &_type_damper {
+            @include adaptiveValue("width", 36px, 73px, $minWidth, $mobile);
+            transform: translate(-50%, 0%);
+
+            @media (min-width: $mobile) {
+                @include adaptiveValue("width", 36px, 73px, $mobile, $desktop);
+            }
+        }
+
         &_type_knee {
             @include adaptiveValue("width", 29px, 57px, $minWidth, $mobile);
-            transform: translate(-50%, -10%);
+            transform: translate(-50%, -25%);
 
             @media (min-width: $mobile) {
                 @include adaptiveValue("width", 29px, 57px, $mobile, $desktop);
@@ -206,7 +309,7 @@
 
         &_type_curve {
             @include adaptiveValue("width", 60px, 120px, $minWidth, $mobile);
-            transform: translateX(-75%);
+            transform: translate(-75%, 0%);
 
             @media (min-width: $mobile) {
                 @include adaptiveValue("width", 60px, 120px, $mobile, $desktop);
@@ -251,6 +354,7 @@
         @include adaptiveValue("height", 400px, 900px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
+            top: 5%;
             @include adaptiveValue("left", 105px, 180px, $mobile, $desktop);
             transform: none;
             @include adaptiveValue("height", 600px, 1060px, $mobile, $desktop);
@@ -267,7 +371,7 @@
         color: $thirdColor;
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("bottom", 15px, 40px, $mobile, $desktop);
+            @include adaptiveValue("bottom", 90px, 85px, $mobile, $desktop);
             @include adaptiveValue("left", 130px, 260px, $mobile, $desktop);
             @include adaptiveValue("font-size", 16px, 20px, $mobile, $desktop);
         }

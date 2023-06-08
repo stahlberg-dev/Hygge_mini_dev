@@ -10,7 +10,7 @@
     }
 
     &__title {
-        @include adaptiveValue("margin-bottom", 10px, 40px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
             @include adaptiveValue("margin-bottom", 20px, 30px, $mobile, $desktop);

@@ -12,10 +12,10 @@
     }
 
     &__title {
-        @include adaptiveValue("margin-bottom", 10px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("margin-bottom", 5px, 10px, $minWidth, $mobile);
 
         @media (min-width: $mobile) {
-            @include adaptiveValue("margin-bottom", 10px, 20px, $mobile, $desktop);
+            @include adaptiveValue("margin-bottom", 5px, 5px, $mobile, $desktop);
         }
     }
 
@@ -107,7 +107,6 @@
         width: 100%;
         padding-bottom: 100%;
         border-radius: 50%;
-        overflow: hidden;
 
         @media (min-width: $mobile) {
             flex: 0 0 auto;
@@ -115,6 +114,16 @@
             @include adaptiveValue("height", 350px, 600px, $mobile, $desktop);
             padding-bottom: 0;
         }
+    }
+
+    &__photo-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        overflow: hidden;
     }
 
     &__photo {
@@ -142,17 +151,15 @@
 
     &__point {
         position: absolute;
-        @include adaptiveValue("width", 10px, 20px, $minWidth, $mobile);
-        @include adaptiveValue("height", 10px, 20px, $minWidth, $mobile);
+        @include adaptiveValue("width", 7px, 15px, $minWidth, $mobile);
+        @include adaptiveValue("height", 7px, 15px, $minWidth, $mobile);
         border-radius: 50%;
         border: 1px solid $primaryColor;
-        box-shadow: 0px 0px 2px 1px rgba(210, 67, 24, 1),
-                    inset 0px 0px 2px 1px rgba(210, 67, 24, 1);
         background-color: $backgroundColor;
         transition: transform 0.3s ease;
 
         @media (min-width: $smallMobile) {
-            border-width: 3px;
+            border-width: 2px;
         }
 
         &[data-point="surface"] {
@@ -201,7 +208,7 @@
         }
 
         &[data-point="chimney"] {
-            top: 33%;
+            top: 43%;
             left: 58%;
         }
 
@@ -215,12 +222,17 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            box-shadow: 0px 0px 3px 1px rgba(210, 67, 24, 1),
-                        inset 0px 0px 2px 1px rgba(210, 67, 24, 1);
+            box-shadow: 0px 0px 1px 1px rgba(210, 67, 24, 1),
+                        inset 0px 0px 1px 1px rgba(210, 67, 24, 1);
             opacity: 0;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
             animation-duration: 4.0s;
+
+            @media (min-width: $smallMobile) {
+                box-shadow: 0px 0px 2px 2px rgba(210, 67, 24, 1),
+                            inset 0px 0px 2px 1px rgba(210, 67, 24, 1);
+            }
         }
 
         &::before {
@@ -236,7 +248,7 @@
 
             from {
               opacity: 0;
-              transform: scale(0.5, 0.5);
+              transform: scale(1, 1);
             }
 
             50% {
@@ -245,7 +257,7 @@
            
             to {
                 opacity: 0;
-                transform: scale(2.7, 2.7);
+                transform: scale(2, 2);
             }
         }
            
@@ -253,7 +265,7 @@
 
             from {
                 opacity: 0;
-                transform: scale(0.5, 0.5);
+                transform: scale(1, 1);
             }
 
             50% {
@@ -262,7 +274,7 @@
         
             to {
                 opacity: 0;
-                transform: scale(2.7, 2.7);
+                transform: scale(2, 2);
             }
         }
         
@@ -308,7 +320,7 @@
 
         &_active {
             opacity: 1;
-            transform: translate(-50%, calc(-100% - 3.3vw)) scale(1, 1);
+            transform: translate(-50%, calc(-100% - 3.3vw)) scale(1.001, 1.001);
         }
     }
 
@@ -331,10 +343,11 @@
         align-items: center;
         @include adaptiveValue("width", 20px, 25px, $mobile, $tablet);
         @include adaptiveValue("height", 20px, 25px, $mobile, $tablet);
-        transform: translate(-50%, -50%) scale(0, 0);
+        transform: translate(-50%, -50%);
         border-radius: 50%;
         border: 2px solid $primaryColor;
         background-color: $backgroundColor;
+        opacity: 0;
         transition: transform 0.3s ease;
 
         @media (min-width: $tablet) {
@@ -387,12 +400,14 @@
         }
 
         &[data-number="chimney"] {
-            top: 33%;
+            top: 44%;
             left: 58%;
         }
 
         &_active {
-            transform: translate(-50%, -50%) scale(1, 1);
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
     }
     

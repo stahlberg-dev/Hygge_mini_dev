@@ -5,8 +5,71 @@
                 <a href="index.html" class="header__logo">
                     <img src="img/logo.svg" alt="логотип" class="header__logo-icon">
                 </a>
+                <nav class="header__left-menu">
+                    <ul class="header__left-menu-list">
+                        <li class="header__left-menu-item">
+                            <a href="https://hyggehot.ru" 
+                            class="header__left-menu-link header__link header__link_desktop">Каталог печей</a>
+                        </li>
+                        <li data-sublink="camp" class="header__left-menu-item">
+                            <div class="header__left-menu-link 
+                                        header__link 
+                                        header__link_desktop">
+                                <div class="header__left-menu-link-text">Походные печи</div>
+                                <svg class="header__left-menu-link-icon">
+                                    <use xlink:href="img/icon_sprite/sprite.svg#slider-arrow"></use>
+                                </svg>
+                            </div>
+                            <div class="header__left-submenu">
+                                <ul data-submenu="camp" class="header__left-submenu-list">
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://kitchen.hyggehot.ru"
+                                        class="header__left-menu-link header__link header__link_desktop">Kitchen 2.0</a>
+                                    </li>
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://mini.hyggehot.ru"
+                                        class="header__left-menu-link header__left-menu-link_current header__link header__link_desktop">Mini</a>
+                                    </li>
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://light.hyggehot.ru"
+                                        class="header__left-menu-link header__link header__link_desktop">Light</a>
+                                    </li>
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://longheat.hyggehot.ru"
+                                        class="header__left-menu-link header__link header__link_desktop">Longheat</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li data-sublink="heating" class="header__left-menu-item">
+                            <div class="header__left-menu-link 
+                                        header__link 
+                                        header__link_desktop">
+                                <div class="header__left-menu-link-text">Отопительные печи</div>
+                                <svg class="header__left-menu-link-icon">
+                                    <use xlink:href="img/icon_sprite/sprite.svg#slider-arrow"></use>
+                                </svg>
+                            </div>
+                            <div class="header__left-submenu">
+                                <ul data-submenu="heating" class="header__left-submenu-list">
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://minion.hyggehot.ru" 
+                                           class="header__left-menu-link header__link header__link_desktop">Minion</a>
+                                    </li>
+                                    <li class="header__left-submenu-item">
+                                        <a href="https://minionhome.hyggehot.ru" 
+                                           class="header__left-menu-link header__link header__link_desktop">Minion Home</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
                 <div class="header__menu menu">
-                    <nav class="menu__body">
+                    <nav class="menu__body lock-padding">
+                        <div class="menu__top lock-padding">
+                            <div class="menu__top-right"></div>
+                        </div>
                         <ul class="menu__list">
                             <li class="menu__item">
                                 <a href="gallery.html" 
@@ -32,9 +95,38 @@
                                 <a href="index.html#questions"
                                    class="menu__link header__link">Вопросы</a>
                             </li>
+                            <li class="menu__item menu__item_mobile menu__item_divider">
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://hyggehot.ru" 
+                                class="menu__link header__link">Каталог печей</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://kitchen.hyggehot.ru" 
+                                class="menu__link header__link">Kitchen 2.0</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://mini.hyggehot.ru" 
+                                class="menu__link menu__link_current header__link">Mini</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://light.hyggehot.ru" 
+                                class="menu__link header__link">Light</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://longheat.hyggehot.ru" 
+                                class="menu__link header__link">Longheat</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://minion.hyggehot.ru" 
+                                class="menu__link header__link">Minion</a>
+                            </li>
+                            <li class="menu__item menu__item_mobile">
+                                <a href="https://minionhome.hyggehot.ru" 
+                                class="menu__link header__link">Minion Home</a>
+                            </li>
                         </ul>
                         <div class="menu__right-side">
-                            <!-- <a href="#!" class="menu__link menu__registration header__link">Регистрация печи</a> -->
                             <div class="menu__phone">
                                 <a href="tel:88007003062" class="menu__phone-link header__link">
                                     <svg class="menu__phone-icon">
@@ -63,9 +155,17 @@
                     <div class="header__phone-text">Бесплатно по всей РФ</div>
                 </div>
                 <div class="header__burger burger">
-                    <span class="burger__stripe"></span>
-                    <span class="burger__stripe"></span>
-                    <span class="burger__stripe"></span>
+                    <span class="burger__box burger__box_highlighted"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__box"></span>
+                    <span class="burger__left-stripe"></span>
+                    <span class="burger__right-stripe"></span>
                 </div>
             </div>
         </div>
